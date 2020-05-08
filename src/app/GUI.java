@@ -18,14 +18,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.sql.Connection;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+// import java.awt.event.ActionEvent;
+// import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
     private static final long serialVersionUID = 1L;
-    JTextField tfUser, tfPass;
+    JTextField tfUser;
+    JPasswordField tfPass;
     JButton bttLogin, bttExit;
     Connection conn = null;
     PreparedStatement ps = null;
@@ -91,7 +93,7 @@ public class GUI extends JFrame {
         b1.add(tfUser);
         b2.add(lblPass = new JLabel("Password: "));
         lblPass.setFont(new Font("Arial", Font.PLAIN, 15));
-        tfPass = new JTextField(20);
+        tfPass = new JPasswordField(20);
         b2.add(tfPass);
         lblPass.setPreferredSize(lblUser.getPreferredSize());
         tfPass.setPreferredSize(tfUser.getPreferredSize());
@@ -127,7 +129,7 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     String sql = "select * from account where username=? and password=?";
-
+                    getMD5(new String(tfPass.getPassword()));
                     // tạo đối tượng thực thi câu lệnh select
                     ps = conn.prepareStatement(sql);
                     ps.setString(1, tfUser.getText());
