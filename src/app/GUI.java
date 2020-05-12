@@ -69,7 +69,7 @@ public class GUI extends JFrame {
 
         JPanel pnlWest = new JPanel();
         pnlWest.setBorder(BorderFactory.createLineBorder(Color.red));
-        ImageIcon myImage = new ImageIcon("./src/image/download.jpg");
+        ImageIcon myImage = new ImageIcon("image/download.jpg");
         pnlWest.add(new JLabel(myImage));
 
         add(pnlWest, BorderLayout.CENTER);
