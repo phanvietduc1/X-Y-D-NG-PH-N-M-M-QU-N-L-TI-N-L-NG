@@ -28,7 +28,7 @@ public class GUI extends JFrame {
     private static final long serialVersionUID = 1L;
     JTextField tfUser;
     JPasswordField tfPass;
-    JButton bttLogin, bttExit;
+    JButton bttLogin, bttExit, bttInfo;
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -64,6 +64,7 @@ public class GUI extends JFrame {
         pnlNorth.add(labelLogon = new JLabel("Login"));
         labelLogon.setFont(new Font("Arial", Font.BOLD, 30));
         labelLogon.setForeground(Color.red);
+        pnlNorth.add(bttInfo = new JButton("Info"));
         add(pnlNorth, BorderLayout.NORTH);
 
         JPanel pnlWest = new JPanel();
@@ -170,6 +171,15 @@ public class GUI extends JFrame {
                     // }
                 }
             }
+        });
+        
+        bttInfo.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "-	Nguyễn Thu Huyền\n" +
+"-	Phan Viết Đức\n" +
+"-	Lê Chí Hải", "Thông tin nhóm", JOptionPane.INFORMATION_MESSAGE);
+            };
         });
     }
 
