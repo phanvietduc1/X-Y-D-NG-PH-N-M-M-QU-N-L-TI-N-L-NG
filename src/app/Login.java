@@ -136,7 +136,8 @@ public class Login extends JFrame {
                     if (rs.next()) {
                         if (tfUser.getText().equals("admin")) {
                             JOptionPane.showMessageDialog(null, "Login Successfully. admin");
-                            
+                            Admin admin0 = new Admin();
+                            admin0.doShow();
                             Login.this.dispose();
                         }
                         if (tfUser.getText().equals("user")) {
