@@ -3,6 +3,7 @@ package app;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
+// import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,10 +22,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.sql.Connection;
+// import javax.swing.border.Border;
 // import java.awt.event.ActionEvent;
 // import java.awt.event.ActionListener;
 
-public class GUI extends JFrame {
+public class Login extends JFrame {
     private static final long serialVersionUID = 1L;
     JTextField tfUser;
     JPasswordField tfPass;
@@ -33,8 +35,10 @@ public class GUI extends JFrame {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public GUI(String title) {
-        setTitle(title);
+    // bttInfo.setBorder(new RoundedBorder(10));
+
+    public Login() {
+        setTitle("Phan mem quan ly luong");
     }
 
     public void doShow() {
@@ -48,7 +52,7 @@ public class GUI extends JFrame {
         Ketnoi();
     }
 
-    private void Ketnoi() {
+    public void Ketnoi() {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
         } catch (Exception ex) {
@@ -57,6 +61,11 @@ public class GUI extends JFrame {
     }
 
     public void buildGUI() {
+        bttInfo=new JButton("i");
+        bttInfo.setBounds(440, 330, 40, 30);
+        // bttInfo.setSize(45, 45);
+        add(bttInfo);
+
         JPanel pnlNorth = new JPanel();
         pnlNorth.setBorder(BorderFactory.createLineBorder(Color.RED));
 
@@ -64,7 +73,6 @@ public class GUI extends JFrame {
         pnlNorth.add(labelLogon = new JLabel("Login"));
         labelLogon.setFont(new Font("Arial", Font.BOLD, 30));
         labelLogon.setForeground(Color.red);
-        pnlNorth.add(bttInfo = new JButton("Info"));
         add(pnlNorth, BorderLayout.NORTH);
 
         JPanel pnlWest = new JPanel();
@@ -80,6 +88,7 @@ public class GUI extends JFrame {
         // pnlSouth.add(bttExit = new JButton("Exit"));
 
         add(pnlSouth, BorderLayout.SOUTH);
+
         JPanel pnlCenter = new JPanel();
         pnlCenter.setBorder(BorderFactory.createLineBorder(Color.red));
 
@@ -99,29 +108,13 @@ public class GUI extends JFrame {
         lblPass.setPreferredSize(lblUser.getPreferredSize());
         tfPass.setPreferredSize(tfUser.getPreferredSize());
 
-        b0.add(Box.createVerticalStrut(50)); // khoảng cách bên trên
+        b0.add(Box.createVerticalStrut(50));
         b0.add(b1);
         b0.add(Box.createVerticalStrut(10));
         b0.add(b2);
         pnlCenter.add(b0);
 
         add(pnlCenter, BorderLayout.EAST);
-
-        // tfUser.addActionListener(new ActionListener(){
-        // public voi
-        // // throw new UnsupportedOperationException("Not supported yet.");
-        // }
-        // });
-        // tfPass.addActionListener(new ActionLis tene
-        // public void actionPerformed(ActionEvent e) {
-        // // throw new Unsup p ortedOperationException("Not supported yet.");
-        // }
-        // });
-        // bttLogin.addActionListener(new ActionListener(){
-        // public void actionPer f ormed(ActionEvent e) {
-        // // throw new UnsupportedOperationException("Not supported yet.");
-        // }
-        // });
     }
 
     public void addEvents() {
@@ -143,11 +136,14 @@ public class GUI extends JFrame {
                     if (rs.next()) {
                         if (tfUser.getText().equals("admin")) {
                             JOptionPane.showMessageDialog(null, "Login Successfully. admin");
-                            GUI.this.dispose();
+                            
+                            Login.this.dispose();
                         }
                         if (tfUser.getText().equals("user")) {
                             JOptionPane.showMessageDialog(null, "Login Successfully");
-                            GUI.this.dispose();
+                            User user0 = new User();
+                            user0.doShow();
+                            Login.this.dispose();
                         }
                     } else {
                         JOptionPane.showConfirmDialog(rootPane, "User Name or Password not Matched", "Login Error", 1);
@@ -172,15 +168,14 @@ public class GUI extends JFrame {
                 }
             }
         });
-        
-        bttInfo.addActionListener(new ActionListener(){
+        bttInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "-	Nguyễn Thu Huyền\n" +
-"-	Phan Viết Đức\n" +
-"-	Lê Chí Hải", "Thông tin nhóm", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "-	Nguyễn Thu Huyền\n" + "-	Phan Viết Đức\n" + "-	Lê Chí Hải",
+                        "Thông tin nhóm", JOptionPane.INFORMATION_MESSAGE);
             };
         });
+
     }
 
     public String getMD5(String md5) {
@@ -198,4 +193,26 @@ public class GUI extends JFrame {
         }
         return null;
     }
+
+    // private class RoundedBorder implements Border {
+
+    // private int radius;
+
+    // RoundedBorder(int radius) {
+    // this.radius = radius;
+    // }
+
+    // public Insets getBorderInsets(Component c) {
+    // return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+    // }
+
+    // public boolean isBorderOpaque() {
+    // return true;
+    // }
+
+    // public void paintBorder(Component c, Graphics g, int x, int y, int width, int
+    // height) {
+    // g.drawRoundRect(x, y, width-1, height-1, radius, radius);
+    // }
+    // }
 }

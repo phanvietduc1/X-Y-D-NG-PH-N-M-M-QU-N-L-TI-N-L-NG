@@ -75,7 +75,7 @@ INSERT INTO `luong` (`MALUONG`, `MANV`, `LUONGCOBAN`, `SONGAYLAM`, `PHUCAP`, `TO
 
 CREATE TABLE `nhanvien` (
   `MANV` varchar(10) NOT NULL,
-  `TENNV` varchar(10) DEFAULT NULL,
+  `TENNV` varchar(30) DEFAULT NULL,
   `GIOITINH` varchar(5) DEFAULT NULL,
   `CHUCVU` varchar(15) DEFAULT NULL,
   `MAPHONG` varchar(10) DEFAULT NULL
@@ -86,12 +86,12 @@ CREATE TABLE `nhanvien` (
 --
 
 INSERT INTO `nhanvien` (`MANV`, `TENNV`, `GIOITINH`, `CHUCVU`, `MAPHONG`) VALUES
-('NV01', 'NGUYEN VAN', 'NAM', 'TRUONG PHONG', 'P01'),
-('NV02', 'NGUYEN THI', 'NU', 'PHO PHONG', 'P02'),
-('NV03', 'NGUYEN VAN', 'NAM', 'NHAN VIEN', 'P03'),
-('NV04', 'NGUYEN THI', 'NU', 'KE TOAN', 'P02'),
-('NV05', 'NGUYEN VAN', 'NAM', 'NHAN VIEN', 'P01'),
-('NV06', 'NGUYEN THI', 'NU', 'TRUONG PHONG', 'P03');
+('NV01', 'TRAN HONG DUC', 'NAM', 'TRUONG PHONG', 'P01'),
+('NV02', 'NGUYEN THI HOA', 'NU', 'PHO PHONG', 'P02'),
+('NV03', 'PHAM VAN BACH', 'NAM', 'NHAN VIEN', 'P03'),
+('NV04', 'HO THI THINH', 'NU', 'KE TOAN', 'P02'),
+('NV05', 'PHAN VAN VIET', 'NAM', 'NHAN VIEN', 'P01'),
+('NV06', 'NGUYEN THI TRINH', 'NU', 'TRUONG PHONG', 'P03');
 
 -- --------------------------------------------------------
 
