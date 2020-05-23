@@ -86,11 +86,11 @@ public class User extends JFrame {
     }
 
     public void addEvents() {
-        bttOut.addActionListener(new ActionListener() {
+        bttOut.addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Login login0 = new Login();
-                login0.doShow();
+                Login login0 = new Login(); 
+                login0.doShow(); 
                 User.this.dispose();
             };
         });

@@ -22,13 +22,25 @@ public class LuongService {
                 lg.setluongcoban(rs.getLong(3));
                 lg.setsongaylam(rs.getInt(4));
                 lg.setphucap(rs.getLong(5));
-                lg.settongluong(rs.getLong(5));
-                lg.setghichu(rs.getString(5));
+                lg.settongluong(rs.getLong(6));
+                lg.setghichu(rs.getString(7));
                 dslg.add(lg);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return dslg;
+    }
+    
+    public void updateLuong(Luong lg){
+        try {
+            String sql = "UPDATE LUONG set tongluong=" + Long.toString(lg.gettongluong()) + ", ghichu='" + lg.getghichu() + "' where MALUONG='" + lg.getmaluong() + "'";
+            System.out.println(sql);
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
+            PreparedStatement pre = conn.prepareStatement(sql);
+            int rs = pre.executeUpdate(sql);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

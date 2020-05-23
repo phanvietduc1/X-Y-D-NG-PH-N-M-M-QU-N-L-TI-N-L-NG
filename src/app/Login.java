@@ -61,7 +61,7 @@ public class Login extends JFrame {
     }
 
     public void buildGUI() {
-        bttInfo=new JButton("i");
+        bttInfo=new JButton("i"); 
         bttInfo.setBounds(440, 330, 40, 30);
         // bttInfo.setSize(45, 45);
         add(bttInfo);
