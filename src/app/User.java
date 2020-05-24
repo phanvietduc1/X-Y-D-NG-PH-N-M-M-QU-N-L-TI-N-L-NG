@@ -2,12 +2,7 @@ package app;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.*;
-// import java.awt.event.*;
-// import java.sql.Connection;
-// import java.sql.DriverManager;
-// import java.sql.PreparedStatement;
 import java.util.Vector;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;

@@ -10,6 +10,7 @@ import java.security.MessageDigest;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -20,8 +21,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.sql.Connection;
+// import java.awt.event.ActionEvent;
+// import java.awt.event.ActionListener;
 
-public class Login extends JFrame {
+public class GUI extends JFrame {
     private static final long serialVersionUID = 1L;
     JTextField tfUser;
     JPasswordField tfPass;
@@ -30,10 +33,8 @@ public class Login extends JFrame {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    // bttInfo.setBorder(new RoundedBorder(10));
-
-    public Login() {
-        setTitle("Phan mem quan ly luong");
+    public GUI(String title) {
+        setTitle(title);
     }
 
     public void doShow() {
@@ -47,7 +48,7 @@ public class Login extends JFrame {
         Ketnoi();
     }
 
-    public void Ketnoi() {
+    private void Ketnoi() {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
         } catch (Exception ex) {
@@ -56,11 +57,6 @@ public class Login extends JFrame {
     }
 
     public void buildGUI() {
-        bttInfo=new JButton("i"); 
-        bttInfo.setBounds(440, 330, 40, 30);
-        // bttInfo.setSize(45, 45);
-        add(bttInfo);
-
         JPanel pnlNorth = new JPanel();
         pnlNorth.setBorder(BorderFactory.createLineBorder(Color.RED));
 
@@ -68,11 +64,12 @@ public class Login extends JFrame {
         pnlNorth.add(labelLogon = new JLabel("Login"));
         labelLogon.setFont(new Font("Arial", Font.BOLD, 30));
         labelLogon.setForeground(Color.red);
+        pnlNorth.add(bttInfo = new JButton("Info"));
         add(pnlNorth, BorderLayout.NORTH);
 
         JPanel pnlWest = new JPanel();
         pnlWest.setBorder(BorderFactory.createLineBorder(Color.red));
-        ImageIcon myImage = new ImageIcon("./src/image/download.jpg");
+        ImageIcon myImage = new ImageIcon("image/download.jpg");
         pnlWest.add(new JLabel(myImage));
 
         add(pnlWest, BorderLayout.CENTER);
@@ -83,7 +80,6 @@ public class Login extends JFrame {
         // pnlSouth.add(bttExit = new JButton("Exit"));
 
         add(pnlSouth, BorderLayout.SOUTH);
-
         JPanel pnlCenter = new JPanel();
         pnlCenter.setBorder(BorderFactory.createLineBorder(Color.red));
 
@@ -103,78 +99,88 @@ public class Login extends JFrame {
         lblPass.setPreferredSize(lblUser.getPreferredSize());
         tfPass.setPreferredSize(tfUser.getPreferredSize());
 
-        b0.add(Box.createVerticalStrut(50));
+        b0.add(Box.createVerticalStrut(50)); // khoảng cách bên trên
         b0.add(b1);
         b0.add(Box.createVerticalStrut(10));
         b0.add(b2);
         pnlCenter.add(b0);
 
         add(pnlCenter, BorderLayout.EAST);
+
+        // tfUser.addActionListener(new ActionListener(){
+        // public voi
+        // // throw new UnsupportedOperationException("Not supported yet.");
+        // }
+        // });
+        // tfPass.addActionListener(new ActionLis tene
+        // public void actionPerformed(ActionEvent e) {
+        // // throw new Unsup p ortedOperationException("Not supported yet.");
+        // }
+        // });
+        // bttLogin.addActionListener(new ActionListener(){
+        // public void actionPer f ormed(ActionEvent e) {
+        // // throw new UnsupportedOperationException("Not supported yet.");
+        // }
+        // });
     }
 
     public void addEvents() {
         bttLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Admin admin0 = new Admin();
-                            admin0.doShow();
-                            Login.this.dispose();
-                // try {
-                //     String sql = "select * from account where username=? and password=?";
-                //     getMD5(new String(tfPass.getPassword()));
-                //     // tạo đối tượng thực thi câu lệnh select
-                //     ps = conn.prepareStatement(sql);
-                //     ps.setString(1, tfUser.getText());
-                //     ps.setString(2, tfPass.getText());
+                try {
+                    String sql = "select * from account where username=? and password=?";
+                    getMD5(new String(tfPass.getPassword()));
+                    // tạo đối tượng thực thi câu lệnh select
+                    ps = conn.prepareStatement(sql);
+                    ps.setString(1, tfUser.getText());
+                    ps.setString(2, tfPass.getText());
 
-                //     // thực thi câu lệnh select
-                //     rs = ps.executeQuery();
+                    // thực thi câu lệnh select
+                    rs = ps.executeQuery();
 
-                //     // nếu đăng nhập thành công
-                //     if (rs.next()) {
-                //         if (tfUser.getText().equals("admin")) {
-                //             JOptionPane.showMessageDialog(null, "Login Successfully. admin");
-                //             Admin admin0 = new Admin();
-                //             admin0.doShow();
-                //             Login.this.dispose();
-                //         }
-                //         if (tfUser.getText().equals("user")) {
-                //             JOptionPane.showMessageDialog(null, "Login Successfully");
-                //             User user0 = new User();
-                //             user0.doShow();
-                //             Login.this.dispose();
-                //         }
-                //     } else {
-                //         JOptionPane.showConfirmDialog(rootPane, "User Name or Password not Matched", "Login Error", 1);
-                //     }
-                // } catch (Exception ex) {
-                //     ex.printStackTrace();
-                // } finally {
-                //     // try {
-                //     // // đóng kết nối
-                //     // if (conn != null) {
-                //     // conn.close();
-                //     // }
-                //     // if (rs != null) {
-                //     // rs.close();
-                //     // }
-                //     // if (ps != null) {
-                //     // ps.close();
-                //     // }
-                //     // } catch (Exception ex2) {
-                //     // ex2.printStackTrace();
-                //     // }
-                // }
+                    // nếu đăng nhập thành công
+                    if (rs.next()) {
+                        if (tfUser.getText().equals("admin")) {
+                            JOptionPane.showMessageDialog(null, "Login Successfully. admin");
+                            GUI.this.dispose();
+                        }
+                        if (tfUser.getText().equals("user")) {
+                            JOptionPane.showMessageDialog(null, "Login Successfully");
+                            GUI.this.dispose();
+                        }
+                    } else {
+                        JOptionPane.showConfirmDialog(rootPane, "User Name or Password not Matched", "Login Error", 1);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } finally {
+                    // try {
+                    // // đóng kết nối
+                    // if (conn != null) {
+                    // conn.close();
+                    // }
+                    // if (rs != null) {
+                    // rs.close();
+                    // }
+                    // if (ps != null) {
+                    // ps.close();
+                    // }
+                    // } catch (Exception ex2) {
+                    // ex2.printStackTrace();
+                    // }
+                }
             }
         });
-        bttInfo.addActionListener(new ActionListener() {
+        
+        bttInfo.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "-	Nguyễn Thu Huyền\n" + "-	Phan Viết Đức\n" + "-	Lê Chí Hải",
-                        "Thông tin nhóm", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "-	Nguyễn Thu Huyền\n" +
+"-	Phan Viết Đức\n" +
+"-	Lê Chí Hải", "Thông tin nhóm", JOptionPane.INFORMATION_MESSAGE);
             };
         });
-
     }
 
     public String getMD5(String md5) {
@@ -192,26 +198,4 @@ public class Login extends JFrame {
         }
         return null;
     }
-
-    // private class RoundedBorder implements Border {
-
-    // private int radius;
-
-    // RoundedBorder(int radius) {
-    // this.radius = radius;
-    // }
-
-    // public Insets getBorderInsets(Component c) {
-    // return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
-    // }
-
-    // public boolean isBorderOpaque() {
-    // return true;
-    // }
-
-    // public void paintBorder(Component c, Graphics g, int x, int y, int width, int
-    // height) {
-    // g.drawRoundRect(x, y, width-1, height-1, radius, radius);
-    // }
-    // }
 }
