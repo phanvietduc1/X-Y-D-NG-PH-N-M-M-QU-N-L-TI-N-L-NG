@@ -38,6 +38,7 @@ public class User extends JFrame {
         tab = new JTabbedPane();
         con.add(tab);
         JPanel pntab1 = new JPanel();
+        pntab1.setLayout(new BorderLayout());
         tab.add("Danh sách nhân viên", pntab1);
 
         DefaultTableModel dtm = new DefaultTableModel();
@@ -52,7 +53,7 @@ public class User extends JFrame {
         dtm.addColumn("SONGAYLAM");
         dtm.addColumn("PHUCAP");
         dtm.addColumn("TONGLUONG");
-        dtm.addColumn("GHICHU");
+        // dtm.addColumn("GHICHU");
 
         LuongUnionNhanVienService lgUnvService = new LuongUnionNhanVienService();
         dslgUnv = lgUnvService.getlgUnv();
@@ -66,18 +67,44 @@ public class User extends JFrame {
             vec.add(lgUnv.getsongaylam());
             vec.add(lgUnv.getphucap());
             vec.add(lgUnv.gettongluong());
-            vec.add(lgUnv.getghichu());
+            // vec.add(lgUnv.getghichu());
 
             dtm.addRow(vec);
         }
-        pntab1.add(sc);
+        sc.setPreferredSize(new Dimension(600, 400));
+
+        tb.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tb.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tb.getColumnModel().getColumn(1).setPreferredWidth(120);
+        tb.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tb.getColumnModel().getColumn(3).setPreferredWidth(80);
+        tb.getColumnModel().getColumn(4).setPreferredWidth(80);
+        tb.getColumnModel().getColumn(5).setPreferredWidth(140);
+
+        pntab1.add(sc, BorderLayout.CENTER);
 
         JPanel pntab2 = new JPanel();
         tab.add("Thông báo", pntab2);
 
-        DefaultTableModel dtm0 = new DefaultTableModel();
-        JTable tb0 = new JTable(dtm0);
-        pntab2.add(tb0);
+        DefaultTableModel dtm2 = new DefaultTableModel();
+        JTable tb2 = new JTable(dtm2);
+        ArrayList<LuongUnionNhanVien> dslgUnv2;
+        JScrollPane sc2 = new JScrollPane(tb2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        dtm2.addColumn("THONGBAO");
+
+        // LuongUnionNhanVienService lgUnvService = new LuongUnionNhanVienService();
+        dslgUnv2 = lgUnvService.getlgUnv();
+        dtm2.setRowCount(0);
+
+        for (LuongUnionNhanVien lgUnv : dslgUnv2) {
+            Vector<Object> vec = new Vector<Object>();
+            vec.add(lgUnv.getghichu());
+
+            dtm2.addRow(vec);
+        }
+        pntab2.add(sc2);
     }
 
     public void addEvents() {
