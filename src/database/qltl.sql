@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 03:55 PM
+-- Generation Time: May 28, 2020 at 07:51 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -43,14 +43,35 @@ INSERT INTO `account` (`username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `chucvu`
+--
+
+CREATE TABLE `chucvu` (
+  `tenchucvu` varchar(15) NOT NULL,
+  `tienchucvu` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chucvu`
+--
+
+INSERT INTO `chucvu` (`tenchucvu`, `tienchucvu`) VALUES
+('KETOAN', 200000),
+('NHANVIEN', 100000),
+('PHOPHONG', 300000),
+('TRUONGPHO', 400000);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `luong`
 --
 
 CREATE TABLE `luong` (
   `MALUONG` varchar(10) NOT NULL,
-  `MANV` varchar(10) DEFAULT NULL,
-  `LUONGCOBAN` int(11) DEFAULT NULL,
+  `MANV` varchar(10) NOT NULL,
   `SONGAYLAM` tinyint(4) DEFAULT NULL,
+  `HESO` float DEFAULT NULL,
   `PHUCAP` int(11) DEFAULT NULL,
   `TONGLUONG` int(11) DEFAULT NULL,
   `GHICHU` varchar(100) DEFAULT NULL
@@ -60,13 +81,13 @@ CREATE TABLE `luong` (
 -- Dumping data for table `luong`
 --
 
-INSERT INTO `luong` (`MALUONG`, `MANV`, `LUONGCOBAN`, `SONGAYLAM`, `PHUCAP`, `TONGLUONG`, `GHICHU`) VALUES
-('L01', 'NV01', 10000000, 30, 500000, 10500000, ""),
-('L02', 'NV02', 8000000, 30, 300000, 8300000, ""),
-('L03', 'NV03', 7000000, 30, 200000, 7200000, ""),
-('L04', 'NV04', 9000000, 30, 300000, 9300000, ""),
-('L05', 'NV05', 7000000, 30, 500000, 7500000, ""),
-('L06', 'NV06', 10000000, 30, 200000, 10200000, "");
+INSERT INTO `luong` (`MALUONG`, `MANV`, `SONGAYLAM`, `HESO`, `PHUCAP`, `TONGLUONG`, `GHICHU`) VALUES
+('L01', 'NV01', 26, 4.32, 0, 11232000, ''),
+('L02', 'NV02', 26, 3.66, 0, 8418000, ''),
+('L03', 'NV03', 26, 2.67, 0, 5073000, ''),
+('L04', 'NV04', 26, 3.66, 0, 7320000, ''),
+('L05', 'NV05', 26, 3, 0, 5700000, ''),
+('L06', 'NV06', 26, 3.66, 0, 9516000, '');
 
 -- --------------------------------------------------------
 
@@ -78,7 +99,8 @@ CREATE TABLE `nhanvien` (
   `MANV` varchar(10) NOT NULL,
   `TENNV` varchar(30) DEFAULT NULL,
   `GIOITINH` varchar(5) DEFAULT NULL,
-  `CHUCVU` varchar(15) DEFAULT NULL,
+  `NGAYVAOLAM` date DEFAULT NULL,
+  `tenchucvu` varchar(15) DEFAULT NULL,
   `MAPHONG` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -86,13 +108,13 @@ CREATE TABLE `nhanvien` (
 -- Dumping data for table `nhanvien`
 --
 
-INSERT INTO `nhanvien` (`MANV`, `TENNV`, `GIOITINH`, `CHUCVU`, `MAPHONG`) VALUES
-('NV01', 'TRAN HONG DUC', 'NAM', 'TRUONG PHONG', 'P01'),
-('NV02', 'NGUYEN THI HOA', 'NU', 'PHO PHONG', 'P02'),
-('NV03', 'PHAM VAN BACH', 'NAM', 'NHAN VIEN', 'P03'),
-('NV04', 'HO THI THINH', 'NU', 'KE TOAN', 'P02'),
-('NV05', 'PHAN VAN VIET', 'NAM', 'NHAN VIEN', 'P01'),
-('NV06', 'NGUYEN THI TRINH', 'NU', 'TRUONG PHONG', 'P03');
+INSERT INTO `nhanvien` (`MANV`, `TENNV`, `GIOITINH`, `NGAYVAOLAM`, `tenchucvu`, `MAPHONG`) VALUES
+('NV01', 'TRAN HONG DUC', 'NAM', '2018-03-14', 'TRUONGPHONG', 'P01'),
+('NV02', 'NGUYEN THI HOA', 'NU', '2019-03-01', 'PHOPHONG', 'P02'),
+('NV03', 'PHAM VAN BACH', 'NAM', '2020-02-01', 'NHANVIEN', 'P03'),
+('NV04', 'HO THI THINH', 'NU', '2018-04-12', 'KETOAN', 'P02'),
+('NV05', 'PHAN VAN VIET', 'NAM', '2019-04-12', 'NHANVIEN', 'P01'),
+('NV06', 'NGUYEN THI TRINH', 'NU', '2020-04-12', 'TRUONGPHONG', 'P03');
 
 -- --------------------------------------------------------
 
@@ -103,21 +125,27 @@ INSERT INTO `nhanvien` (`MANV`, `TENNV`, `GIOITINH`, `CHUCVU`, `MAPHONG`) VALUES
 CREATE TABLE `phong` (
   `MAPHONG` varchar(10) NOT NULL,
   `TEN` varchar(10) DEFAULT NULL,
-  `PHUCAP` int(11) DEFAULT NULL
+  `TIENPHONG` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `phong`
 --
 
-INSERT INTO `phong` (`MAPHONG`, `TEN`, `PHUCAP`) VALUES
-('P01', 'NHAN SU', 500000),
-('P02', 'KIEM TOAN', 300000),
-('P03', 'KIEM KE', 200000);
+INSERT INTO `phong` (`MAPHONG`, `TEN`, `TIENPHONG`) VALUES
+('P01', 'NHAN SU', 2200000),
+('P02', 'KIEM TOAN', 2000000),
+('P03', 'KIEM KE', 1800000);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `chucvu`
+--
+ALTER TABLE `chucvu`
+  ADD PRIMARY KEY (`tenchucvu`);
 
 --
 -- Indexes for table `luong`
@@ -131,7 +159,8 @@ ALTER TABLE `luong`
 --
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`MANV`),
-  ADD KEY `FK_nhanvien` (`MAPHONG`);
+  ADD KEY `FK_nhanvien` (`MAPHONG`),
+  ADD KEY `FK_nhanvien2` (`tenchucvu`);
 
 --
 -- Indexes for table `phong`
@@ -153,7 +182,8 @@ ALTER TABLE `luong`
 -- Constraints for table `nhanvien`
 --
 ALTER TABLE `nhanvien`
-  ADD CONSTRAINT `FK_nhanvien` FOREIGN KEY (`MAPHONG`) REFERENCES `phong` (`MAPHONG`);
+  ADD CONSTRAINT `FK_nhanvien` FOREIGN KEY (`MAPHONG`) REFERENCES `phong` (`MAPHONG`),
+  ADD CONSTRAINT `FK_nhanvien2` FOREIGN KEY (`tenchucvu`) REFERENCES `chucvu` (`tenchucvu`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
