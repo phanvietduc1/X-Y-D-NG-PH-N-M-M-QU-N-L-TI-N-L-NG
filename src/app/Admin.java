@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import javax.swing.ImageIcon;
 
 public class Admin extends JFrame {
@@ -145,6 +146,11 @@ public class Admin extends JFrame {
         add(p2, BorderLayout.CENTER);
 
     }
+    
+    public void createThem(){
+        Them them = new Them();
+        them.doShow(this);
+    }
 
     public void addEvents() {
         logoutbtn.addActionListener(new ActionListener() {
@@ -241,6 +247,14 @@ public class Admin extends JFrame {
                     loadData();
                 }
             }
+        });
+        
+        //thêm
+        thembtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createThem();
+            };
         });
     }
 }

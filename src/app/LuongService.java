@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class LuongService {
     public ArrayList<Luong> getLuong() {
@@ -41,6 +42,27 @@ public class LuongService {
             int rs = pre.executeUpdate(sql);
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+    
+    public boolean createLuong(Luong lg){
+        try {
+            String sql = "INSERT INTO `LUONG` (`MALUONG`, `MANV`, `SONGAYLAM`, `HESO`, `PHUCAP`, `TONGLUONG`, `GHICHU`) VALUES (?, ?, ?, ?, ?, ?, ?) ";
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setString(1, lg.getmaluong());
+            pre.setString(2, lg.getmanv());
+            pre.setInt(3, lg.getsongaylam());
+            pre.setDouble(4, lg.getheso());
+            pre.setLong(5, lg.getphucap());
+            pre.setLong(6, lg.gettongluong());
+            pre.setString(7, lg.getghichu());
+            System.out.println(pre);
+            int rs = pre.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
         }
     }
 }

@@ -4,6 +4,7 @@ public class NhanVien {
     private String MaNV;
     private String TenNV;
     private String GioiTinh;
+    private String NgayVaoLam;
     private String ChucVu;
     private String MaPhong;
 
@@ -45,5 +46,13 @@ public class NhanVien {
 
     public void setMaPhong(String maPhong) {
         MaPhong = maPhong;
+    }
+    
+    public void setNgayVaoLam(String ngay){
+        NgayVaoLam = ngay;
+    }
+    
+    public String getNgayVaoLam(){
+        return NgayVaoLam;
     }
 }

@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class NhanVienService {
     public ArrayList<NhanVien> getNV() {
@@ -29,4 +32,18 @@ public class NhanVienService {
         }
         return dsnv;
     }
+    
+    public boolean createNV(NhanVien nv){
+        try {
+            String sql = "INSERT INTO `NHANVIEN` (`MANV`, `TENNV`, `GIOITINH`, `NGAYVAOLAM`, `tenchucvu`, `MAPHONG`) VALUES ('"+nv.getMaNV() + "', '"+nv.getTenNV() + "', '"+nv.getGioiTinh() + "', '"+nv.getNgayVaoLam() + "', '"+nv.getChucVu() + "', '"+nv.getMaPhong() + "') ";
+            System.out.println(sql);
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
+            PreparedStatement pre = conn.prepareStatement(sql);
+            int rs = pre.executeUpdate(sql);
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+     }
 }

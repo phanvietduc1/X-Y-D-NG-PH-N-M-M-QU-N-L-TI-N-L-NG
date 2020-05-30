@@ -29,4 +29,18 @@ public class PhongService {
         }
         return dsnv;
     }
+    
+    public long getTienPhong(String maphong){
+        try {
+            String sql = "SELECT `tienphong` FROM `PHONG` WHERE `maphong`='" + maphong + "'";
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
+            PreparedStatement pre = conn.prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            rs.next();
+            return Long.parseLong(rs.getString(1));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+    }
 }

@@ -8,6 +8,7 @@ public class Luong {
     private long phucap;
     private long tongluong;
     private String ghichu;
+    private double heso;
 
     public String getmaluong() {
         return maluong;
@@ -65,4 +66,11 @@ public class Luong {
     public void setghichu(String ghiChu) {
         ghichu = ghiChu;
     }
+    
+     public double getheso(){
+         return heso;
+     }
+     public void setheso(double HeSo){ // nôn 
+         heso = HeSo;
+     }
 }
