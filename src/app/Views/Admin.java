@@ -221,7 +221,7 @@ public class Admin extends JFrame {
         p2.setBorder(titleCenterBorder2);
         p2.setLayout(grid);
 
-        thembtn = new JButton("Thêm");
+        thembtn = new JButton("Thêm nhân viên");
         p2.add(thembtn);
 
         ImageIcon imageIcon = new ImageIcon("./src/image/add.png"); // load the image to a imageIcon
@@ -231,7 +231,7 @@ public class Admin extends JFrame {
         thembtn.setIcon(imageIcon);
 
         p2.add(Box.createHorizontalStrut(15));
-        suabtn = new JButton("Sửa");
+        suabtn = new JButton("Sửa nhân viên");
         p2.add(suabtn);
 
         ImageIcon imageIcon2 = new ImageIcon("./src/image/fix.png"); // load the image to a imageIcon
@@ -241,7 +241,7 @@ public class Admin extends JFrame {
         suabtn.setIcon(imageIcon2);
 
         p2.add(Box.createHorizontalStrut(15));
-        xoabtn = new JButton("Xóa");
+        xoabtn = new JButton("Xóa nhân viên");
         p2.add(xoabtn);
 
         ImageIcon imageIcon3 = new ImageIcon("./src/image/del.png"); // load the image to a imageIcon
@@ -251,11 +251,11 @@ public class Admin extends JFrame {
         xoabtn.setIcon(imageIcon3);
 
         p2.add(Box.createHorizontalStrut(15));
-        khenbtn = new JButton("Khen");
+        khenbtn = new JButton("Khen thưởng nhân viên");
         p2.add(khenbtn);
         p2.add(Box.createHorizontalStrut(15));
         // Tạo nút Phạt
-        phatbtn = new JButton("Phạt");
+        phatbtn = new JButton("Phạt nhân viên");
         // phatbtn.setBounds(450, 150, 100, 30);
         p2.add(phatbtn);
         p2.add(Box.createHorizontalStrut(15));
