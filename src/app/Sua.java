@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  *
  * @author Administrator
  */
-public class Them extends javax.swing.JFrame {
+public class Sua extends javax.swing.JFrame {
 
     private Admin parent;
-    public Them() {
+    public Sua() {
         initComponents();
     }
 
@@ -47,7 +47,7 @@ public class Them extends javax.swing.JFrame {
         maluong = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Thêm nhân viên");
+        setTitle("Sửa nhân viên");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -55,6 +55,8 @@ public class Them extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Mã nhân viên");
+
+        manhanvien.setEditable(false);
 
         jLabel2.setText("Tên nhân viên");
 
@@ -76,7 +78,7 @@ public class Them extends javax.swing.JFrame {
 
         gioitinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NAM", "NU" }));
 
-        jButton1.setText("Thêm");
+        jButton1.setText("Sửa");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -84,6 +86,8 @@ public class Them extends javax.swing.JFrame {
         });
 
         jLabel8.setText("Mã lương");
+
+        maluong.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,7 +196,7 @@ public class Them extends javax.swing.JFrame {
         }
         
         NhanVienService nvs = new NhanVienService();
-        if (nvs.createNV(nv)){
+        if (nvs.updateNV(nv)){
             LuongService ls = new LuongService();
             Luong lg = new Luong();
             lg.setmaluong(maluong.getText());
@@ -223,15 +227,15 @@ public class Them extends javax.swing.JFrame {
             long tongluong = (long) ((tienphong + tienchucvu) * lg.getheso() + lg.getphucap());
             lg.settongluong(tongluong);
             
-            if (ls.createLuong(lg)) {
+            if (ls.updateAllLuong(lg)) {
                 this.parent.loadData();
-                JOptionPane.showMessageDialog(null, "Đã thêm nhân viên mới!"); 
+                JOptionPane.showMessageDialog(null, "Đã sửa thành công!"); 
             } else {
-                JOptionPane.showMessageDialog(null, "Thêm nhân viên không thành công!");
+                JOptionPane.showMessageDialog(null, "Sửa không thành công!");
             };
             
         } else {
-            JOptionPane.showMessageDialog(null, "Thêm nhân viên không thành công!");
+            JOptionPane.showMessageDialog(null, "Sửa không thành công!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -243,9 +247,25 @@ public class Them extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-    public void doShow(Admin parent) {
+    public void doShow(Admin parent, String manv) {
         this.parent = parent;
         setVisible(true);
+        
+        LuongService ls = new LuongService();
+        Luong lg = ls.getFirstLuong(manv);
+        
+        NhanVienService nvs = new NhanVienService();
+        NhanVien nv = nvs.getFirstNV(manv);
+        
+        maluong.setText(lg.getmaluong());
+        manhanvien.setText(nv.getMaNV());
+        maphong.setSelectedItem(nv.getMaPhong());
+        ngayvaolam.setText(nv.getNgayVaoLam());
+        System.out.println(Integer.toString(lg.getsongaylam()));
+        songaylam.setText(Integer.toString(lg.getsongaylam()));
+        tennhanvien.setText(nv.getTenNV());
+        chucvu.setSelectedItem(nv.getChucVu());
+        gioitinh.setSelectedItem(nv.getGioiTinh());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -151,6 +151,18 @@ public class Admin extends JFrame {
         Them them = new Them();
         them.doShow(this);
     }
+    
+    public void createSua(){
+        int srow = tb.getSelectedRow();
+        if (srow < 0) {
+            JOptionPane.showMessageDialog(null, "Bạn cần phải chọn nhân viên trước!");
+            return;
+        }
+        String smanv = (String) tb.getValueAt(tb.getSelectedRow(), 0);
+        
+        Sua sua = new Sua();
+        sua.doShow(this, smanv);
+    }
 
     public void addEvents() {
         logoutbtn.addActionListener(new ActionListener() {
@@ -255,6 +267,35 @@ public class Admin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 createThem();
             };
+        });
+        
+        suabtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createSua();
+            };
+        });
+    
+        xoabtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int srow = tb.getSelectedRow();
+                if (srow < 0) {
+                    JOptionPane.showMessageDialog(null, "Bạn cần phải chọn nhân viên trước!");
+                    return;
+                }
+                String smanv = (String) tb.getValueAt(tb.getSelectedRow(), 0);
+                
+                NhanVienService nvs = new NhanVienService();
+                LuongService ls = new LuongService();
+                if (ls.removeLuong(smanv) && nvs.removeNV(smanv)){
+                    loadData();
+                    JOptionPane.showMessageDialog(null, "Đã xóa thành công!");
+                } else {
+                    loadData();
+                    JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi!");
+                }
+            }
         });
     }
 }
