@@ -1,4 +1,4 @@
-package app;
+package app.Models;
 
 public class NhanVien {
     private String MaNV;

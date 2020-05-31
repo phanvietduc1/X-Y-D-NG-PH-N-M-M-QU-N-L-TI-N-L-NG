@@ -1,4 +1,4 @@
-package app;
+package app.Views;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -7,6 +7,9 @@ import java.util.Vector;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import app.Controllers.*;
+import app.Models.*;
 
 public class User extends JFrame {
     private static final long serialVersionUID = 1L;

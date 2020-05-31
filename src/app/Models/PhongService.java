@@ -1,4 +1,4 @@
-package app;
+package app.Models;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,27 +7,25 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class PhongService {
-    public ArrayList<NhanVien> getNV() {
-        ArrayList<NhanVien> dsnv = new ArrayList<NhanVien>();
+    public ArrayList<Phong> getPhong(){
+        ArrayList<Phong> dsp = new ArrayList<Phong>();
         try {
-            String sql = "select * from nhanvien";
+            String sql = "select * from phong";
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
             PreparedStatement pre = conn.prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 // can luu vao 1 danh sach nxb
-                NhanVien nv = new NhanVien();
-                nv.setMaNV(rs.getString(1));
-                nv.setTenNV(rs.getString(2));
-                nv.setGioiTinh(rs.getString(3));
-                nv.setChucVu(rs.getString(4));
-                nv.setMaPhong(rs.getString(4));
-                dsnv.add(nv);
+                Phong p = new Phong();
+                p.setMaPhong(rs.getString(1));
+                p.setTen(rs.getString(2));
+                p.setTienPhong(rs.getLong(3));
+                dsp.add(p);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return dsnv;
+        return dsp;
     }
     
     public long getTienPhong(String maphong){

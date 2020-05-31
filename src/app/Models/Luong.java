@@ -1,14 +1,13 @@
-package app;
+package app.Models;
 
 public class Luong {
     private String maluong;
     private String manv;
-    private long luongcoban;
     private int songaylam;
+    private double heso;
     private long phucap;
     private long tongluong;
     private String ghichu;
-    private double heso;
 
     public String getmaluong() {
         return maluong;
@@ -34,21 +33,12 @@ public class Luong {
         songaylam = soNgaylam;
     }
 
-    
     public long getphucap() {
         return phucap;
     }
 
     public void setphucap(long phuCap) {
         phucap = phuCap;
-    }
-    
-    public long getluongcoban() {
-        return luongcoban;
-    }
-
-    public void setluongcoban(long luongCoban) {
-        luongcoban = luongCoban;
     }
 
     public long gettongluong() {
@@ -66,11 +56,12 @@ public class Luong {
     public void setghichu(String ghiChu) {
         ghichu = ghiChu;
     }
-    
-     public double getheso(){
-         return heso;
-     }
-     public void setheso(double HeSo){ // nôn 
-         heso = HeSo;
-     }
+
+    public double getheso() {
+        return heso;
+    }
+
+    public void setheso(double HeSo) { // nôn
+        heso = HeSo;
+    }
 }

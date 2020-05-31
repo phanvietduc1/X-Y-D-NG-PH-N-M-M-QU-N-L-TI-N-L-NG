@@ -1,4 +1,4 @@
-package app;
+package app.Views;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;

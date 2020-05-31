@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package app.Controllers;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import app.Models.*;
+import app.Views.*;
 
 /**
  *
@@ -184,6 +187,12 @@ public class Them extends javax.swing.JFrame {
         nv.setNgayVaoLam(ngayvaolam.getText());
         nv.setChucVu(chucvu.getSelectedItem().toString());
         nv.setMaPhong(maphong.getSelectedItem().toString());
+        
+        int ngaylam = Integer.parseInt(songaylam.getText());
+        if (ngaylam < 0 || ngaylam > 31){
+            JOptionPane.showMessageDialog(null, "Số ngày làm chỉ được từ 0 - 31"); 
+            return;
+        }
         
         NhanVienService nvs = new NhanVienService();
         if (nvs.createNV(nv)){
