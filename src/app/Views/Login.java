@@ -10,7 +10,6 @@ import java.security.MessageDigest;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,10 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import java.sql.Connection;
 
-import app.Controllers.*;
 
 
 public class Login extends JFrame {
@@ -35,7 +32,7 @@ public class Login extends JFrame {
     ResultSet rs = null;
 
     public Login() {
-        setTitle("Phan mem quan ly luong");
+        setTitle("Phần mềm quản lý lương");
     }
 
     public void doShow() {
@@ -102,11 +99,11 @@ public class Login extends JFrame {
         lblPass.setPreferredSize(lblUser.getPreferredSize());
         tfPass.setPreferredSize(tfPass.getPreferredSize());
 
-        b0.add(Box.createVerticalStrut(35));
+        b0.add(Box.createVerticalStrut(25));
         b0.add(b1);
         b0.add(Box.createVerticalStrut(10));
         b0.add(b2);
-        b0.add(Box.createVerticalStrut(35));
+        b0.add(Box.createVerticalStrut(45));
         pnlCenter.add(b0, BorderLayout.CENTER);
 
         add(pnlCenter, BorderLayout.CENTER);
@@ -171,7 +168,12 @@ public class Login extends JFrame {
                         "Thông tin nhóm", JOptionPane.INFORMATION_MESSAGE);
             };
         });
-
+        bttExit.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                Login.this.dispose();
+            }
+        });
     }
 
     public String getMD5(String md5) {
