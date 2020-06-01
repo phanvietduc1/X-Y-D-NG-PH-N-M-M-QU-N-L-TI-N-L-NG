@@ -19,7 +19,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import java.sql.Connection;
+
+import app.Controllers.*;
+
 
 public class Login extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -30,18 +34,16 @@ public class Login extends JFrame {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    // bttInfo.setBorder(new RoundedBorder(10));
-
     public Login() {
         setTitle("Phan mem quan ly luong");
     }
 
     public void doShow() {
-        setSize(500, 400);
+        setSize(630, 250);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         buildGUI();
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
         addEvents();
         Ketnoi();
@@ -56,36 +58,33 @@ public class Login extends JFrame {
     }
 
     public void buildGUI() {
-        bttInfo=new JButton("i"); 
-        bttInfo.setBounds(440, 330, 40, 30);
-        // bttInfo.setSize(45, 45);
-        add(bttInfo);
 
-        JPanel pnlNorth = new JPanel();
-        pnlNorth.setBorder(BorderFactory.createLineBorder(Color.RED));
-
-        JLabel labelLogon;
-        pnlNorth.add(labelLogon = new JLabel("Login"));
-        labelLogon.setFont(new Font("Arial", Font.BOLD, 30));
-        labelLogon.setForeground(Color.red);
-        add(pnlNorth, BorderLayout.NORTH);
+        setBackground(Color.gray);
 
         JPanel pnlWest = new JPanel();
-        pnlWest.setBorder(BorderFactory.createLineBorder(Color.red));
-        ImageIcon myImage = new ImageIcon("./src/image/download.jpg");
+        ImageIcon myImage = new ImageIcon("./src/image/1.jpg");
         pnlWest.add(new JLabel(myImage));
 
-        add(pnlWest, BorderLayout.CENTER);
-
-        JPanel pnlSouth = new JPanel();
-        pnlSouth.setBorder(BorderFactory.createLineBorder(Color.RED));
-        pnlSouth.add(bttLogin = new JButton("Login"));
-        // pnlSouth.add(bttExit = new JButton("Exit"));
-
-        add(pnlSouth, BorderLayout.SOUTH);
+        add(pnlWest, BorderLayout.WEST);
 
         JPanel pnlCenter = new JPanel();
-        pnlCenter.setBorder(BorderFactory.createLineBorder(Color.red));
+        pnlCenter.setLayout(new BorderLayout());
+
+        JPanel pnSouthCenter = new JPanel();
+        pnSouthCenter.add(bttLogin = new JButton("Login"));
+        pnSouthCenter.add(bttExit = new JButton("Exit"));
+        bttInfo = new JButton("i");
+        pnSouthCenter.add(bttInfo);
+
+        pnlCenter.add(pnSouthCenter, BorderLayout.SOUTH);
+
+        JPanel pnNorthCenter = new JPanel();
+        JLabel lbl1 = new JLabel("Login");
+        Font ft1 = new Font("arial", Font.BOLD, 55);
+        lbl1.setFont(ft1);
+        lbl1.setForeground(Color.GRAY);
+        pnNorthCenter.add(lbl1);
+        pnlCenter.add(pnNorthCenter, BorderLayout.NORTH);
 
         Box b0 = Box.createVerticalBox();
         Box b1 = Box.createHorizontalBox();
@@ -101,27 +100,25 @@ public class Login extends JFrame {
         tfPass = new JPasswordField(20);
         b2.add(tfPass);
         lblPass.setPreferredSize(lblUser.getPreferredSize());
-        tfPass.setPreferredSize(tfUser.getPreferredSize());
+        tfPass.setPreferredSize(tfPass.getPreferredSize());
 
-        b0.add(Box.createVerticalStrut(50));
+        b0.add(Box.createVerticalStrut(35));
         b0.add(b1);
         b0.add(Box.createVerticalStrut(10));
         b0.add(b2);
-        pnlCenter.add(b0);
+        b0.add(Box.createVerticalStrut(35));
+        pnlCenter.add(b0, BorderLayout.CENTER);
 
-        add(pnlCenter, BorderLayout.EAST);
+        add(pnlCenter, BorderLayout.CENTER);
     }
 
     public void addEvents() {
         bttLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Admin admin0 = new Admin();
-                //             admin0.doShow();
-                //             Login.this.dispose();
                 try {
                     String sql = "select * from account where username=? and password=?";
-                    getMD5(new String(tfPass.getPassword()));
+                    getMD5(new String(tfPass.getText()));
                     // tạo đối tượng thực thi câu lệnh select
                     ps = conn.prepareStatement(sql);
                     ps.setString(1, tfUser.getText());
