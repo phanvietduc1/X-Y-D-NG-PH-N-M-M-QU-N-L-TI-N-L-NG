@@ -97,7 +97,7 @@ public class Login extends JFrame {
         tfPass = new JPasswordField(20);
         b2.add(tfPass);
         lblPass.setPreferredSize(lblUser.getPreferredSize());
-        tfPass.setPreferredSize(tfPass.getPreferredSize());
+        tfUser.setPreferredSize(tfPass.getPreferredSize());
 
         b0.add(Box.createVerticalStrut(25));
         b0.add(b1);
@@ -127,13 +127,13 @@ public class Login extends JFrame {
                     // nếu đăng nhập thành công
                     if (rs.next()) {
                         if (tfUser.getText().equals("admin")) {
-                            JOptionPane.showMessageDialog(null, "Login Successfully. admin");
+                            JOptionPane.showMessageDialog(null, "Chào mừng Admin");
                             Admin admin0 = new Admin();
                             admin0.doShow();
                             Login.this.dispose();
                         }
                         if (tfUser.getText().equals("user")) {
-                            JOptionPane.showMessageDialog(null, "Login Successfully");
+                            JOptionPane.showMessageDialog(null, "Chào mừng User");
                             User user0 = new User();
                             user0.doShow();
                             Login.this.dispose();

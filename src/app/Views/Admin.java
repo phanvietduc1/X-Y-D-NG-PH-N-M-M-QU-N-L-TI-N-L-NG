@@ -3,6 +3,7 @@ package app.Views;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -103,6 +104,8 @@ public class Admin extends JFrame {
 
     public void GUI() {
         setLayout(new BorderLayout());
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 
         // panel 1
         Border centerBorder = BorderFactory.createLineBorder(Color.blue);
@@ -112,49 +115,55 @@ public class Admin extends JFrame {
         add(tab, BorderLayout.WEST);
         JPanel pntab1 = new JPanel();
         pntab1.setLayout(new BorderLayout());
-        tab.add("Nhan vien", pntab1);
+        tab.add("Quản lý nhân viên", pntab1);
 
         dtm1 = new DefaultTableModel();
         tb1 = new JTable(dtm1);
         JScrollPane sc1 = new JScrollPane(tb1, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        dtm1.addColumn("MANV");
-        dtm1.addColumn("TENNV");
-        dtm1.addColumn("GIOITINH");
-        dtm1.addColumn("NGAYVAOLAM");
-        dtm1.addColumn("TENCHUCVU");
-        dtm1.addColumn("MAPHONG");
+        dtm1.addColumn("Mã nhân viên");
+        dtm1.addColumn("Tên nhân viên");
+        dtm1.addColumn("Giới tính");
+        dtm1.addColumn("Ngày vào làm");
+        dtm1.addColumn("Tên chức vụ");
+        dtm1.addColumn("Mã phòng");
 
         sc1.setPreferredSize(new Dimension(770, 400));
 
         tb1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tb1.getColumnModel().getColumn(0).setPreferredWidth(70);
+        tb1.getColumnModel().getColumn(0).setPreferredWidth(90);
+        tb1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         tb1.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tb1.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         tb1.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tb1.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         tb1.getColumnModel().getColumn(3).setPreferredWidth(120);
+        tb1.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         tb1.getColumnModel().getColumn(4).setPreferredWidth(150);
-        tb1.getColumnModel().getColumn(5).setPreferredWidth(150);
+        tb1.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tb1.getColumnModel().getColumn(5).setPreferredWidth(130);
+        tb1.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         pntab1.add(sc1);
 
         // tab2
         JPanel pntab2 = new JPanel();
         pntab2.setLayout(new BorderLayout());
-        tab.add("Luong", pntab2);
+        tab.add("Quản lý lương", pntab2);
 
         dtm2 = new DefaultTableModel();
         tb2 = new JTable(dtm2);
         JScrollPane sc2 = new JScrollPane(tb2, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        dtm2.addColumn("MALUONG");
-        dtm2.addColumn("MANV");
-        dtm2.addColumn("SONGAYLAM");
-        dtm2.addColumn("HESO");
-        dtm2.addColumn("PHUCAP");
-        dtm2.addColumn("TONGLUONG");
-        dtm2.addColumn("GHICHU");
+        dtm2.addColumn("Mã lương");
+        dtm2.addColumn("Mã nhân viên");
+        dtm2.addColumn("Số ngày làm");
+        dtm2.addColumn("Hệ số");
+        dtm2.addColumn("Phụ cấp");
+        dtm2.addColumn("Tổng lương");
+        dtm2.addColumn("Ghi chú");
 
         sc2.setPreferredSize(new Dimension(770, 400));
 
@@ -166,14 +175,21 @@ public class Admin extends JFrame {
         tb2.getColumnModel().getColumn(4).setPreferredWidth(100);
         tb2.getColumnModel().getColumn(5).setPreferredWidth(120);
         tb2.getColumnModel().getColumn(6).setPreferredWidth(140);
+        tb2.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tb2.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tb2.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tb2.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tb2.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tb2.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tb2.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
 
-        pntab2.add(sc2);   
+        pntab2.add(sc2);
 
         // tab3
         JPanel pntab3 = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        c.insets =  new Insets(0,5,0,5);
-        tab.add("Chuc vu va Phong", new JScrollPane(pntab3));
+        c.insets = new Insets(0, 5, 0, 5);
+        tab.add("Quản lý chức vụ và phòng", new JScrollPane(pntab3));
 
         // bang chuc vu
         dtm3 = new DefaultTableModel();
@@ -181,14 +197,16 @@ public class Admin extends JFrame {
         JScrollPane sc3 = new JScrollPane(tb3, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        dtm3.addColumn("TEN CHUC VU");
-        dtm3.addColumn("TIEN CHUC VU");
+        dtm3.addColumn("Tên chức vụ");
+        dtm3.addColumn("Tiền chức vụ");
 
         sc3.setPreferredSize(new Dimension(350, 400));
 
         tb3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tb3.getColumnModel().getColumn(0).setPreferredWidth(180);
         tb3.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tb3.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tb3.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 
         pntab3.add(sc3, c);
 
@@ -199,9 +217,9 @@ public class Admin extends JFrame {
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         sc4.setPreferredSize(new Dimension(700, 400));
 
-        dtm4.addColumn("MA PHONG");
-        dtm4.addColumn("TEN PHONG");
-        dtm4.addColumn("TIEN PHONG");
+        dtm4.addColumn("Mã phòng");
+        dtm4.addColumn("Tên phòng");
+        dtm4.addColumn("Tiền theo phòng");
 
         sc4.setPreferredSize(new Dimension(380, 400));
 
@@ -209,6 +227,10 @@ public class Admin extends JFrame {
         tb4.getColumnModel().getColumn(0).setPreferredWidth(120);
         tb4.getColumnModel().getColumn(1).setPreferredWidth(120);
         tb4.getColumnModel().getColumn(2).setPreferredWidth(120);
+        tb4.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tb4.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tb4.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        
 
         pntab3.add(sc4, c);
 
@@ -217,7 +239,7 @@ public class Admin extends JFrame {
         // p1.setPreferredSize(new Dimension(800, 400));
 
         JPanel p2 = new JPanel();
-        TitledBorder titleCenterBorder2 = new TitledBorder(centerBorder, "Chuc nang");
+        TitledBorder titleCenterBorder2 = new TitledBorder(centerBorder, "Chức năng");
         p2.setBorder(titleCenterBorder2);
         p2.setLayout(grid);
 
@@ -251,7 +273,7 @@ public class Admin extends JFrame {
         xoabtn.setIcon(imageIcon3);
 
         p2.add(Box.createHorizontalStrut(15));
-        khenbtn = new JButton("Khen thưởng nhân viên");
+        khenbtn = new JButton("Thưởng nhân viên");
         p2.add(khenbtn);
         p2.add(Box.createHorizontalStrut(15));
         // Tạo nút Phạt
@@ -268,20 +290,20 @@ public class Admin extends JFrame {
         add(p2, BorderLayout.CENTER);
 
     }
-    
-    public void createThem(){
+
+    public void createThem() {
         Them them = new Them();
         them.doShow(this);
     }
-    
-    public void createSua(){
+
+    public void createSua() {
         int srow = tb1.getSelectedRow();
         if (srow < 0) {
             JOptionPane.showMessageDialog(null, "Bạn cần phải chọn nhân viên trước!");
             return;
         }
         String smanv = (String) tb1.getValueAt(tb1.getSelectedRow(), 0);
-        
+
         Sua sua = new Sua();
         sua.doShow(this, smanv);
     }
@@ -382,22 +404,22 @@ public class Admin extends JFrame {
                 }
             }
         });
-        
-        //thêm
+
+        // thêm
         thembtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 createThem();
             };
         });
-        
+
         suabtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 createSua();
             };
         });
-    
+
         xoabtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -407,10 +429,10 @@ public class Admin extends JFrame {
                     return;
                 }
                 String smanv = (String) tb1.getValueAt(tb1.getSelectedRow(), 0);
-                
+
                 NhanVienService nvs = new NhanVienService();
                 LuongService ls = new LuongService();
-                if (ls.removeLuong(smanv) && nvs.removeNV(smanv)){
+                if (ls.removeLuong(smanv) && nvs.removeNV(smanv)) {
                     loadData();
                     JOptionPane.showMessageDialog(null, "Đã xóa thành công!");
                 } else {

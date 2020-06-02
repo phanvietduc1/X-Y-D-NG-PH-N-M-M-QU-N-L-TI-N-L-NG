@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import app.Controllers.*;
 import app.Models.*;
 
 public class User extends JFrame {
