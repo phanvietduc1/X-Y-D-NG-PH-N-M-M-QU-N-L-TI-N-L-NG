@@ -355,6 +355,7 @@ public class Admin extends JFrame {
                         }
                         lg.settongluong(lg.gettongluong() + Long.parseLong(tienthuongField.getText()));
                         lg.setghichu(lg.getghichu() + ", " + ghichuField.getText());
+                        lg.setphucap(lg.getphucap() +  Long.parseLong(tienthuongField.getText()));
                         ls.updateLuong(lg);
                     }
                     loadData();
@@ -387,7 +388,7 @@ public class Admin extends JFrame {
                 int result = JOptionPane.showConfirmDialog(null, myPanel, "Phạt", JOptionPane.OK_CANCEL_OPTION);
 
                 if (result == JOptionPane.OK_OPTION) {
-                    System.out.println("Tiền phạt: " + tienphatField.getText());
+                    System.out.println("Tiền phạt: " + tienphatField.getText()); // cái này là phạt mà ?
                     System.out.println("Ghi chú: " + ghichuField.getText());
 
                     LuongService ls = new LuongService();
@@ -396,8 +397,11 @@ public class Admin extends JFrame {
                         if (!lg.getmanv().equals(smanv)) {
                             continue;
                         }
-                        lg.settongluong(lg.gettongluong() - Long.parseLong(tienphatField.getText()));
+                        lg.settongluong(lg.gettongluong() - Long.parseLong(tienphatField.getText())); // đây
                         lg.setghichu(lg.getghichu() + ", " + ghichuField.getText());
+                        lg.setphucap(lg.getphucap() -  Long.parseLong(tienphatField.getText())); // đã phạt rồi còn cộng chi vậy?
+// em đang cộng cái gì vậy ? Đây là chuỗi, nếu muốn cộng số thì bỏ cái này đi. "tienphatField.getText()" vẫn trả về chuỗi
+// ta cần chuyển nó sang số, hàm chuyển anh đã viết ở trên rồi
                         ls.updateLuong(lg);
                     }
                     loadData();

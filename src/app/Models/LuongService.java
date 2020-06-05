@@ -62,7 +62,7 @@ public class LuongService {
     public void updateLuong(Luong lg) {
         try {
             String sql = "UPDATE LUONG set tongluong=" + Long.toString(lg.gettongluong()) + ", ghichu='"
-                    + lg.getghichu() + "' where MALUONG='" + lg.getmaluong() + "'";
+                    + lg.getghichu() + "', phucap=" + lg.getphucap() + " where MALUONG='" + lg.getmaluong() + "'";
             System.out.println(sql);
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
             PreparedStatement pre = conn.prepareStatement(sql);
