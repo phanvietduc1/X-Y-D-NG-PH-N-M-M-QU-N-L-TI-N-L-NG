@@ -192,7 +192,8 @@ public class Admin extends JFrame {
         tab.add("Quản lý chức vụ và phòng", new JScrollPane(pntab3));
 
         // bang chuc vu
-        
+        dtm3 = new DefaultTableModel();
+        tb3 = new JTable(dtm3);
         JScrollPane sc3 = new JScrollPane(tb3, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
