@@ -1,5 +1,6 @@
 package app.Views;
 
+import app.Controllers.ChangePassword;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,7 +27,7 @@ public class Login extends JFrame {
     private static final long serialVersionUID = 1L;
     JTextField tfUser;
     JPasswordField tfPass;
-    JButton bttLogin, bttExit, bttInfo;
+    JButton bttLogin, bttExit, bttInfo, bttchangepassword;
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -70,6 +71,7 @@ public class Login extends JFrame {
         JPanel pnSouthCenter = new JPanel();
         pnSouthCenter.add(bttLogin = new JButton("Login"));
         pnSouthCenter.add(bttExit = new JButton("Exit"));
+        pnSouthCenter.add(bttchangepassword = new JButton("Change password"));
         bttInfo = new JButton("i");
         pnSouthCenter.add(bttInfo);
 
@@ -107,6 +109,11 @@ public class Login extends JFrame {
         pnlCenter.add(b0, BorderLayout.CENTER);
 
         add(pnlCenter, BorderLayout.CENTER);
+    }
+    
+    public void createChangePassword() {
+        ChangePassword change = new ChangePassword();
+        change.doShow(this);
     }
 
     public void addEvents() {
@@ -174,6 +181,14 @@ public class Login extends JFrame {
                 Login.this.dispose();
             }
         });
+        //đổi mật khẩu
+        bttchangepassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createChangePassword();
+            };
+        });
+        
     }
 
     public String getMD5(String md5) {
