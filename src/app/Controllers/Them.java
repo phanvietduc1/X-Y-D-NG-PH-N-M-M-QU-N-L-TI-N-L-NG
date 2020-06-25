@@ -17,7 +17,7 @@ import app.Views.*;
  */
 public class Them extends javax.swing.JFrame {
 
-    private Admin parent;
+    private Admin parent; 
     public Them() {
         initComponents();
     }
