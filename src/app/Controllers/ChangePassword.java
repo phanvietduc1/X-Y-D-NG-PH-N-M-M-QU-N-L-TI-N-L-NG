@@ -63,13 +63,21 @@ public class ChangePassword extends javax.swing.JFrame {
         tieude.setForeground(new java.awt.Color(255, 0, 0));
         tieude.setText("THAY ĐỔI MẬT KHẨU");
 
+        matkhaucu.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        matkhaucu.setForeground(new java.awt.Color(0, 51, 255));
         matkhaucu.setText("Mật khẩu cũ");
 
+        matkhaumoi.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        matkhaumoi.setForeground(new java.awt.Color(0, 0, 255));
         matkhaumoi.setText("Mật khẩu mới");
 
+        nhaplaimatkhaumoi.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        nhaplaimatkhaumoi.setForeground(new java.awt.Color(0, 0, 255));
         nhaplaimatkhaumoi.setText("Nhập lại mật khẩu mới");
 
-        dongy.setForeground(new java.awt.Color(102, 0, 102));
+        dongy.setBackground(new java.awt.Color(255, 204, 255));
+        dongy.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        dongy.setForeground(new java.awt.Color(255, 0, 0));
         dongy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Ok-icon.png"))); // NOI18N
         dongy.setText("Đồng ý");
         dongy.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +86,9 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
 
-        thoat.setForeground(new java.awt.Color(102, 0, 102));
+        thoat.setBackground(new java.awt.Color(255, 204, 255));
+        thoat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        thoat.setForeground(new java.awt.Color(255, 0, 0));
         thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Action-remove-icon.png"))); // NOI18N
         thoat.setText("Thoát");
         thoat.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +99,8 @@ public class ChangePassword extends javax.swing.JFrame {
 
         keyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/key-icon (1).png"))); // NOI18N
 
+        ten.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ten.setForeground(new java.awt.Color(0, 0, 255));
         ten.setText("Tên đăng nhập");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,35 +108,36 @@ public class ChangePassword extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(keyIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tieude, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104))
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(dongy)
-                .addGap(29, 29, 29)
-                .addComponent(thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPasswordnhaplaimk, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(matkhaucu)
                             .addComponent(matkhaumoi)
+                            .addComponent(matkhaucu)
                             .addComponent(ten))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPasswordMatkhaucu, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                             .addComponent(jPasswordMatkhaumoi)
-                            .addComponent(username)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nhaplaimatkhaumoi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPasswordnhaplaimk, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(username))))
                 .addGap(70, 70, 70))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nhaplaimatkhaumoi)
+                    .addComponent(dongy))
+                .addGap(29, 29, 29)
+                .addComponent(thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,17 +147,14 @@ public class ChangePassword extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(tieude, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(keyIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(ten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(matkhaucu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordMatkhaucu, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPasswordMatkhaucu, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(matkhaucu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordMatkhaumoi, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,8 +162,8 @@ public class ChangePassword extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordnhaplaimk, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nhaplaimatkhaumoi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(nhaplaimatkhaumoi, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dongy)
                     .addComponent(thoat))
