@@ -52,6 +52,7 @@ public class Sua extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sửa nhân viên");
+        setBackground(new java.awt.Color(255, 0, 51));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -90,7 +91,6 @@ public class Sua extends javax.swing.JFrame {
         jLabel6.setText("Mã phòng");
 
         maphong.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        maphong.setForeground(new java.awt.Color(0, 0, 255));
         maphong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P01", "P02", "P03" }));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
