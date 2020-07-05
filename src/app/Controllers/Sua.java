@@ -45,7 +45,7 @@ public class Sua extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         songaylam = new javax.swing.JTextField();
         gioitinh = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        Suabtn = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         maluong = new javax.swing.JTextField();
         btnThoat = new javax.swing.JButton();
@@ -100,14 +100,14 @@ public class Sua extends javax.swing.JFrame {
         gioitinh.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         gioitinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NAM", "NU" }));
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 255));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Apps-system-software-update-icon.png"))); // NOI18N
-        jButton1.setText("Sửa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Suabtn.setBackground(new java.awt.Color(255, 204, 255));
+        Suabtn.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        Suabtn.setForeground(new java.awt.Color(255, 0, 0));
+        Suabtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Apps-system-software-update-icon.png"))); // NOI18N
+        Suabtn.setText("Sửa");
+        Suabtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SuabtnActionPerformed(evt);
             }
         });
 
@@ -164,7 +164,7 @@ public class Sua extends javax.swing.JFrame {
                                         .addComponent(chucvu, javax.swing.GroupLayout.Alignment.LEADING, 0, 162, Short.MAX_VALUE)))
                                 .addGap(65, 65, 65)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Suabtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addGap(29, 29, 29))
         );
@@ -192,7 +192,7 @@ public class Sua extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(ngayvaolam, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Suabtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -220,9 +220,14 @@ public class Sua extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SuabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuabtnActionPerformed
 
-        // System.out.println(songaylam.getText());
+        // Nhắc nhở người dùng không bỏ trống ô nào
+        if (manhanvien.getText().isEmpty() || tennhanvien.getText().isEmpty() || gioitinh.getSelectedItem().toString().isEmpty() || ngayvaolam.getText().isEmpty() || chucvu.getSelectedItem().toString().isEmpty() || maphong.getSelectedItem().toString().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Bạn cần điền đầy đủ thông tin!");
+            return;
+        }
         
         NhanVien nv = new NhanVien();
         nv.setMaNV(manhanvien.getText());
@@ -280,7 +285,7 @@ public class Sua extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Sửa không thành công!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SuabtnActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         this.parent.loadData();
@@ -319,10 +324,10 @@ public class Sua extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Suabtn;
     private javax.swing.JButton btnThoat;
     private javax.swing.JComboBox<String> chucvu;
     private javax.swing.JComboBox<String> gioitinh;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

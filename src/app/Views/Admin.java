@@ -144,6 +144,7 @@ public class Admin extends JFrame {
         tb1.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         tb1.getColumnModel().getColumn(5).setPreferredWidth(130);
         tb1.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        
 
         pntab1.add(sc1);
 
@@ -242,49 +243,68 @@ public class Admin extends JFrame {
         TitledBorder titleCenterBorder2 = new TitledBorder(centerBorder, "Chức năng");
         p2.setBorder(titleCenterBorder2);
         p2.setLayout(grid);
-
+        
+        // Tạo nút thêm
         thembtn = new JButton("Thêm nhân viên");
         p2.add(thembtn);
 
-        ImageIcon imageIcon = new ImageIcon("./src/image/add.png"); // load the image to a imageIcon
+        ImageIcon imageIcon = new ImageIcon("./src/image/add-1-icon.png"); // load the image to a imageIcon
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg);
         thembtn.setIcon(imageIcon);
 
+        // Tạo nút sửa
         p2.add(Box.createHorizontalStrut(15));
         suabtn = new JButton("Sửa nhân viên");
         p2.add(suabtn);
 
-        ImageIcon imageIcon2 = new ImageIcon("./src/image/fix.png"); // load the image to a imageIcon
+        ImageIcon imageIcon2 = new ImageIcon("./src/image/edit-icon.png"); // load the image to a imageIcon
         Image image2 = imageIcon2.getImage();
         Image newimg2 = image2.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon2 = new ImageIcon(newimg2);
         suabtn.setIcon(imageIcon2);
 
+        // Tạo nút xóa
         p2.add(Box.createHorizontalStrut(15));
         xoabtn = new JButton("Xóa nhân viên");
         p2.add(xoabtn);
 
-        ImageIcon imageIcon3 = new ImageIcon("./src/image/del.png"); // load the image to a imageIcon
+        ImageIcon imageIcon3 = new ImageIcon("./src/image/green-cross-icon.png"); // load the image to a imageIcon
         Image image3 = imageIcon3.getImage();
         Image newimg3 = image3.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon3 = new ImageIcon(newimg3);
         xoabtn.setIcon(imageIcon3);
 
+        // Tạo nút thưởng
         p2.add(Box.createHorizontalStrut(15));
         khenbtn = new JButton("Thưởng nhân viên");
         p2.add(khenbtn);
+        ImageIcon imageIcon4 = new ImageIcon("./src/image/medal-award-bronze-icon.png"); // load the image to a imageIcon
+        Image image4 = imageIcon4.getImage();
+        Image newimg4 = image4.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+        imageIcon4 = new ImageIcon(newimg4);
+        khenbtn.setIcon(imageIcon4);
         p2.add(Box.createHorizontalStrut(15));
-        // Tạo nút Phạt
+        
+        // Tạo nút Phạt 
         phatbtn = new JButton("Phạt nhân viên");
-        // phatbtn.setBounds(450, 150, 100, 30);
         p2.add(phatbtn);
+        ImageIcon imageIcon5 = new ImageIcon("./src/image/punish-icon.jpg"); // load the image to a imageIcon
+        Image image5 = imageIcon5.getImage();
+        Image newimg5 = image5.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+        imageIcon5 = new ImageIcon(newimg5);
+        phatbtn.setIcon(imageIcon5);
         p2.add(Box.createHorizontalStrut(15));
-        // Tạo nút Logout
+        
+        // Tạo nút Logout 
         logoutbtn = new JButton("Đăng xuất");
-        // logoutbtn.setBounds(450, 250, 100, 30);
         p2.add(logoutbtn);
+        ImageIcon imageIcon6 = new ImageIcon("./src/image/Logout-icon.png"); // load the image to a imageIcon
+        Image image6 = imageIcon6.getImage();
+        Image newimg6 = image6.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+        imageIcon6 = new ImageIcon(newimg6);
+        logoutbtn.setIcon(imageIcon6);
         p2.add(Box.createHorizontalStrut(15));
 
         add(p2, BorderLayout.CENTER);
@@ -388,7 +408,7 @@ public class Admin extends JFrame {
                 int result = JOptionPane.showConfirmDialog(null, myPanel, "Phạt", JOptionPane.OK_CANCEL_OPTION);
 
                 if (result == JOptionPane.OK_OPTION) {
-                    System.out.println("Tiền phạt: " + tienphatField.getText()); // cái này là phạt mà ?
+                    System.out.println("Tiền phạt: " + tienphatField.getText());
                     System.out.println("Ghi chú: " + ghichuField.getText());
 
                     LuongService ls = new LuongService();
@@ -397,11 +417,9 @@ public class Admin extends JFrame {
                         if (!lg.getmanv().equals(smanv)) {
                             continue;
                         }
-                        lg.settongluong(lg.gettongluong() - Long.parseLong(tienphatField.getText())); // đây
+                        lg.settongluong(lg.gettongluong() - Long.parseLong(tienphatField.getText()));
                         lg.setghichu(lg.getghichu() + ", " + ghichuField.getText());
-                        lg.setphucap(lg.getphucap() -  Long.parseLong(tienphatField.getText())); // đã phạt rồi còn cộng chi vậy?
-// em đang cộng cái gì vậy ? Đây là chuỗi, nếu muốn cộng số thì bỏ cái này đi. "tienphatField.getText()" vẫn trả về chuỗi
-// ta cần chuyển nó sang số, hàm chuyển anh đã viết ở trên rồi
+                        lg.setphucap(lg.getphucap() -  Long.parseLong(tienphatField.getText()));
                         ls.updateLuong(lg);
                     }
                     loadData();

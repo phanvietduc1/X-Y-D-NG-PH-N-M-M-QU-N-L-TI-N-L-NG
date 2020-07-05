@@ -61,7 +61,7 @@ public class Luong {
         return heso;
     }
 
-    public void setheso(double HeSo) { // nôn
+    public void setheso(double HeSo) {
         heso = HeSo;
     }
 }

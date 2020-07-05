@@ -193,6 +193,13 @@ public class ChangePassword extends javax.swing.JFrame {
     }
     //action Đồng ý
     private void dongyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dongyActionPerformed
+        // Nhắc nhở người dùng không bỏ trống ô nào
+        if (username.getText().isEmpty() || jPasswordMatkhaucu.getText().isEmpty() || jPasswordMatkhaumoi.getText().isEmpty() || jPasswordnhaplaimk.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Bạn cần điền đầy đủ thông tin!");
+            return;
+        }
+        
         try {
             
             String sql = "select * from account where username=? and password=?";
@@ -277,7 +284,7 @@ public class ChangePassword extends javax.swing.JFrame {
     
     public void Ketnoi() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/qltl", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/tl", "root", "");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
