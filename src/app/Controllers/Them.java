@@ -208,6 +208,7 @@ public class Them extends javax.swing.JFrame {
             return;
         }
         
+        // Lấy dữ liệu trong các textfield, combo,... rồi dùng nó để tạo đối tượng NhanVien mới
         NhanVien nv = new NhanVien();
         nv.setMaNV(manhanvien.getText());
         nv.setTenNV(tennhanvien.getText());
@@ -222,15 +223,15 @@ public class Them extends javax.swing.JFrame {
             return;
         }
         
-        NhanVienService nvs = new NhanVienService();
-        if (nvs.createNV(nv)){
-            LuongService ls = new LuongService();
-            Luong lg = new Luong();
+        NhanVienService nvs = new NhanVienService(); // Service xử lý nhân viên 
+        if (nvs.createNV(nv)){ // truyền đối tượng nhân viên vào service để xử lý tạo mới (thêm đối tượng nhân viên vào DB), nếu tạo mới thành công thì hàm createNV trả về giá trị true, lúc này ta sẽ xử lý tiếp Lương của đối tượng nhân viên đó
+            LuongService ls = new LuongService(); // Service xử lý Lương
+            Luong lg = new Luong(); // Lấy dữ liệu từ các đối tượng trong frame để tạo đối tượng Luong mói cho nhân viên
             lg.setmaluong(maluong.getText());
             lg.setmanv(manhanvien.getText());
             lg.setphucap(0);
             lg.setsongaylam(Integer.parseInt(songaylam.getText()));
-            switch(nv.getChucVu()) {
+            switch(nv.getChucVu()) { // tùy vào chức vụ của nhân viên mà hệ số lương khác nhau
                 case "TRUONGPHONG":
                   lg.setheso(3.66);
                   break;
@@ -251,16 +252,17 @@ public class Them extends javax.swing.JFrame {
                     break;
               }
             
-            PhongService ps = new PhongService();
-            long tienphong = ps.getTienPhong(nv.getMaPhong());
             
-            ChucVuService cvs = new ChucVuService();
-            long tienchucvu = cvs.getTienChucVu(nv.getChucVu());
+            PhongService ps = new PhongService(); // Service xử lý đối tượng Phòng
+            long tienphong = ps.getTienPhong(nv.getMaPhong()); // lấy tiền phòng của nhân viên
             
-            long tongluong = (long) ((tienphong + tienchucvu) * lg.getheso() + lg.getphucap());
-            lg.settongluong(tongluong);
+            ChucVuService cvs = new ChucVuService(); // Service xử lý đối tượng Chức vụ
+            long tienchucvu = cvs.getTienChucVu(nv.getChucVu());  // lấy tiền chức vụ của nhân viên
             
-            if (ls.createLuong(lg)) {
+            long tongluong = (long) ((tienphong + tienchucvu) * lg.getheso() + lg.getphucap()); // dựa trên các tiền lấy ở trên để tính tổng lương
+            lg.settongluong(tongluong); // sau đó gán cho đối lượng lương
+            
+            if (ls.createLuong(lg)) { // thêm đối tượng lg vào database bằng lương service (ls). Nếu thêm thành công thì giá trị trả về là true.
                 this.parent.loadData();
                 JOptionPane.showMessageDialog(null, "Đã thêm nhân viên mới!"); 
             } else {
@@ -282,10 +284,6 @@ public class Them extends javax.swing.JFrame {
         adminn.doShow();
         Them.this.dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
     public void doShow(Admin parent) {
         this.parent = parent;
