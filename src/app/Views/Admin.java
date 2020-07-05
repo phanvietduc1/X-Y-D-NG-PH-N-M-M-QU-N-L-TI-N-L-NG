@@ -7,10 +7,37 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
+
+import java.util.TreeMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.apache.poi.hssf.model.WorkbookRecordList;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+
+import java.io.OutputStream;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
+
+//import org.apache.commons.math3.util.ArithmeticUtils;
 
 import app.Models.*;
 import app.Controllers.*;
@@ -22,6 +49,7 @@ public class Admin extends JFrame {
     JTable tb1, tb2, tb3, tb4;
     DefaultTableModel dtm1, dtm2, dtm3, dtm4;
     GridLayout grid = new GridLayout(0, 1);
+    JButton printNV, printLuong, printPhong, printChucVu;
 
     public Admin() {
         setTitle("Phần mềm quản lý lương");
@@ -101,6 +129,214 @@ public class Admin extends JFrame {
             dtm3.addRow(vec);
         }
     }
+    
+    public String getCellDtm1Value(int x, int y) {
+    	return dtm1.getValueAt(x, y).toString();
+    }
+    
+    public String getCellDtm4Value(int x, int y) {
+    	return dtm4.getValueAt(x, y).toString();
+    }
+    
+    public String getCellDtm2Value(int x, int y) {
+    	return dtm2.getValueAt(x, y).toString();
+    }
+    
+    public String getCellDtm3Value(int x, int y) {
+    	return dtm3.getValueAt(x, y).toString();
+    }
+    
+    public void writeToExcelPhong() {
+    	HSSFWorkbook wb = new HSSFWorkbook();
+    	HSSFSheet ws  = wb.createSheet();
+    	
+    	// load du lieu len tree map
+    	TreeMap<String, Object[]> data = new TreeMap<>();
+    	
+    	// them column header
+    	data.put("-4", new Object[] {dtm4.getColumnName(0), dtm4.getColumnName(1),dtm4.getColumnName(2)});
+    	
+    	// them hang va cell
+    	for (int i=0; i<dtm4.getRowCount(); i++) {
+    		data.put(Integer.toString(i), new Object[] {getCellDtm4Value(i,0),getCellDtm4Value(i,1),getCellDtm4Value(i,2)});
+    	}
+    	
+    	// xuat ra file excel
+    	Set<String> ids = data.keySet();
+    	HSSFRow row;
+    	int rowID = 0;
+    	
+    	for(String key: ids)
+    	{
+    		row = ws.createRow(rowID++);
+    		
+    		// lay data voi moi key
+    		Object[] values = data.get(key);
+    		
+    		int cellID = 0;
+    		for (Object o: values)
+    		{
+    			Cell cell = row.createCell(cellID++);
+    			cell.setCellValue(o.toString());
+    		}
+    	}
+    	
+    	try {
+    		FileOutputStream fos = new FileOutputStream(new File("./src/xls/dsp.xls"));
+    		wb.write(fos);
+    		wb.close();
+    	} catch(FileNotFoundException ex){
+    		JOptionPane.showMessageDialog(null, "loi");
+//    		Logger.getLogger(WorkbookRecordList.class.getName()).log(Level.SEVERE, null, ex);
+    	} catch (IOException ex) {
+    		Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+    		JOptionPane.showMessageDialog(null, "loi");
+    	}
+     }
+    
+    public void writeToExcelNV() {
+    	HSSFWorkbook wb = new HSSFWorkbook();
+    	HSSFSheet ws  = wb.createSheet();
+    	
+    	// load du lieu len tree map
+    	TreeMap<String, Object[]> data = new TreeMap<>();
+    	
+    	// them column header
+    	data.put("-1", new Object[] {dtm1.getColumnName(0), dtm1.getColumnName(1),dtm1.getColumnName(2),dtm1.getColumnName(3),dtm1.getColumnName(4),dtm1.getColumnName(5)});
+    	
+    	// them hang va cell
+    	for (int i=0; i<dtm1.getRowCount(); i++) {
+    		data.put(Integer.toString(i), new Object[] {getCellDtm1Value(i,0),getCellDtm1Value(i,1),getCellDtm1Value(i,2),getCellDtm1Value(i,3),getCellDtm1Value(i,4),getCellDtm1Value(i,5)});
+    	}
+    	
+    	// xuat ra file excel
+    	Set<String> ids = data.keySet();
+    	HSSFRow row;
+    	int rowID = 0;
+    	
+    	for(String key: ids)
+    	{
+    		row = ws.createRow(rowID++);
+    		
+    		// lay data voi moi key
+    		Object[] values = data.get(key);
+    		
+    		int cellID = 0;
+    		for (Object o: values)
+    		{
+    			Cell cell = row.createCell(cellID++);
+    			cell.setCellValue(o.toString());
+    		}
+    	}
+    	
+    	try {
+    		FileOutputStream fos = new FileOutputStream(new File("./src/xls/dsnv.xls"));
+    		wb.write(fos);
+    		wb.close();
+    	} catch(FileNotFoundException ex){
+    		JOptionPane.showMessageDialog(null, "loi");
+//    		Logger.getLogger(WorkbookRecordList.class.getName()).log(Level.SEVERE, null, ex);
+    	} catch (IOException ex) {
+    		Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+    		JOptionPane.showMessageDialog(null, "loi");
+    	}
+     }
+    
+    public void writeToExcelLuong() {
+    	HSSFWorkbook wb = new HSSFWorkbook();
+    	HSSFSheet ws = wb.createSheet();
+    	
+    	// load du lieu len tree map
+    	TreeMap<String, Object[]> data = new TreeMap<>();
+    	
+    	// them column header
+    	data.put("-2", new Object[] {dtm2.getColumnName(0), dtm2.getColumnName(1),dtm2.getColumnName(2),dtm2.getColumnName(3),dtm2.getColumnName(4),dtm2.getColumnName(5)});
+    	
+    	// them hang va cell
+    	for (int i=0; i<dtm2.getRowCount(); i++) {
+    		data.put(Integer.toString(i), new Object[] {getCellDtm2Value(i,0),getCellDtm2Value(i,1),getCellDtm2Value(i,2),getCellDtm2Value(i,3),getCellDtm2Value(i,4),getCellDtm2Value(i,5)});
+    	}
+    	
+    	// xuat ra file excel
+    	Set<String> ids = data.keySet();
+    	HSSFRow row;
+    	int rowID = 0;
+    	
+    	for(String key: ids)
+    	{
+    		row = ws.createRow(rowID++);
+    		
+    		// lay data voi moi key
+    		Object[] values = data.get(key);
+    		
+    		int cellID = 0;
+    		for (Object o: values)
+    		{
+    			Cell cell = row.createCell(cellID++);
+    			cell.setCellValue(o.toString());
+    		}
+    	}
+    	
+    	try {
+    		FileOutputStream fos = new FileOutputStream(new File("./src/xls/dsl.xls"));
+    		wb.write(fos);
+    		wb.close();
+    	} catch(FileNotFoundException ex){
+    		JOptionPane.showMessageDialog(null, "loi");
+//    		Logger.getLogger(WorkbookRecordList.class.getName()).log(Level.SEVERE, null, ex);
+    	} catch (IOException ex) {
+    		Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+    		JOptionPane.showMessageDialog(null, "loi");
+    	}
+     }
+    
+    public void writeToExcelChucVu() {
+    	HSSFWorkbook wb = new HSSFWorkbook();
+    	HSSFSheet ws  = wb.createSheet();
+    	
+    	// load du lieu len tree map
+    	TreeMap<String, Object[]> data = new TreeMap<>();
+    	
+    	// them column header
+    	data.put("-3", new Object[] {dtm3.getColumnName(0), dtm3.getColumnName(1)});
+    	
+    	// them hang va cell
+    	for (int i=0; i<dtm3.getRowCount(); i++) {
+    		data.put(Integer.toString(i), new Object[] {getCellDtm1Value(i,0),getCellDtm1Value(i,1)});
+    	}
+    	
+    	// xuat ra file excel
+    	Set<String> ids = data.keySet();
+    	HSSFRow row;
+    	int rowID = 0;
+    	
+    	for(String key: ids)
+    	{
+    		row = ws.createRow(rowID++);
+    		
+    		// lay data voi moi key
+    		Object[] values = data.get(key);
+    		
+    		int cellID = 0;
+    		for (Object o: values)
+    		{
+    			Cell cell = row.createCell(cellID++);
+    			cell.setCellValue(o.toString());
+    		}
+    	}
+    	
+    	try {
+    		FileOutputStream fos = new FileOutputStream(new File("./src/xls/dscv.xls"));
+    		wb.write(fos);
+    		wb.close();
+    	} catch(FileNotFoundException ex){
+    		JOptionPane.showMessageDialog(null, "loi");
+//    		Logger.getLogger(WorkbookRecordList.class.getName()).log(Level.SEVERE, null, ex);
+    	} catch (IOException ex) {
+    		Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+    		JOptionPane.showMessageDialog(null, "loi");
+    	}
+     }
 
     public void GUI() {
 
@@ -241,9 +477,15 @@ public class Admin extends JFrame {
         pntab3.add(sc4, c);
 
         JPanel pSouth = new JPanel();
-
         
-        // pSouth.add(jPanel6);
+        printNV = new JButton("In danh sách nhân viên");
+        printLuong = new JButton("In danh sách lương");
+        printPhong = new JButton("In danh sách phòng");
+        printChucVu = new JButton("In danh sách chức vụ"); 
+        pSouth.add(printNV);
+        pSouth.add(printLuong);
+        pSouth.add(printPhong);
+        pSouth.add(printChucVu);
         add(pSouth, BorderLayout.SOUTH);
 
         loadData();
@@ -481,6 +723,34 @@ public class Admin extends JFrame {
                     loadData();
                     JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi!");
                 }
+            }
+        });
+        
+        printNV.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+                writeToExcelNV();
+            }
+        });
+        
+        printLuong.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+                writeToExcelLuong();
+            }
+        });
+        
+        printPhong.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+                writeToExcelPhong();
+            }
+        });
+        
+        printChucVu.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+                writeToExcelChucVu();
             }
         });
     }
