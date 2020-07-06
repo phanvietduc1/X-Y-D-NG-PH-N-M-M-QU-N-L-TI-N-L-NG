@@ -122,58 +122,58 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
 
-                Admin admin0 = new Admin();
-                            admin0.doShow();
-                            Login.this.dispose();
+//                Admin admin0 = new Admin();
+//                            admin0.doShow();
+//                            Login.this.dispose();
 
                             // new User("Phần mềm quản lý lương");
                             // Login.this.dispose();
 
-                // try {
-                //     String sql = "select * from account where username=? and password=?";
-                //     getMD5(new String(tfPass.getText()));
-                //     // tạo đối tượng thực thi câu lệnh select
-                //     ps = conn.prepareStatement(sql);
-                //     ps.setString(1, tfUser.getText());
-                //     ps.setString(2, tfPass.getText());
+               try {
+                    String sql = "select * from account where username=? and password=?";
+                    getMD5(new String(tfPass.getText()));
+                     // tạo đối tượng thực thi câu lệnh select
+                    ps = conn.prepareStatement(sql);
+                    ps.setString(1, tfUser.getText());
+                    ps.setString(2, tfPass.getText());
 
-                //     // thực thi câu lệnh select
-                //     rs = ps.executeQuery();
+                   // thực thi câu lệnh select
+                     rs = ps.executeQuery();
 
-                //     // nếu đăng nhập thành công
-                //     if (rs.next()) {
-                //         if (tfUser.getText().equals("admin")) {
-                //             JOptionPane.showMessageDialog(null, "Chào mừng Admin");
-                //             Admin admin0 = new Admin();
-                //             admin0.doShow();
-                //             Login.this.dispose();
-                //         }
-                //         if (tfUser.getText().equals("user")) {
-                //             JOptionPane.showMessageDialog(null, "Chào mừng User");
-                //             new User("Phần mềm quản lý lương");
-                //             Login.this.dispose();
-                //         }
-                //     } else {
-                //         JOptionPane.showConfirmDialog(rootPane, "User Name or Password not Matched", "Login Error", 1);
-                //     }
-                // } catch (Exception ex) {
-                //     ex.printStackTrace();
-                // } finally {
-                //     // try {
-                //     // // đóng kết nối
-                //     // if (conn != null) {
-                //     // conn.close();
-                //     // }
-                //     // if (rs != null) {
-                //     // rs.close();
-                //     // }
-                //     // if (ps != null) {
-                //     // ps.close();
-                //     // }
-                //     // } catch (Exception ex2) {
-                //     // ex2.printStackTrace();
-                //     // }
-                // }
+                     // nếu đăng nhập thành công
+                     if (rs.next()) {
+                         if (tfUser.getText().equals("admin")) {
+                             JOptionPane.showMessageDialog(null, "Chào mừng Admin");
+                            Admin admin0 = new Admin();
+                            admin0.doShow();
+                            Login.this.dispose();
+                         }
+                        if (tfUser.getText().equals("user")) {
+                             JOptionPane.showMessageDialog(null, "Chào mừng User");
+                             new User("Phần mềm quản lý lương");
+                            Login.this.dispose();
+                        }
+                     } else {
+                         JOptionPane.showConfirmDialog(rootPane, "User Name or Password not Matched", "Login Error", 1);
+                    }
+                 } catch (Exception ex) {
+                     ex.printStackTrace();
+                 } finally {
+                     try {
+                     // đóng kết nối
+                     if (conn != null) {
+                     conn.close();
+                     }
+                      if (rs != null) {
+                      rs.close();
+                      }
+                     if (ps != null) {
+                     ps.close();
+                     }
+                     } catch (Exception ex2) {
+                      ex2.printStackTrace();
+                      }
+                 }
             }
         });
         bttInfo.addActionListener(new ActionListener() {

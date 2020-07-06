@@ -508,7 +508,7 @@ public class Admin extends JFrame {
         thembtn = new JButton("Thêm nhân viên");
         pBCN.add(thembtn);
 
-        ImageIcon imageIcon = new ImageIcon("./src/src/image/Add_Employee.png"); // load the image to a imageIcon
+        ImageIcon imageIcon = new ImageIcon("./src/image/add-1-icon.png"); // load the image to a imageIcon
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg);
@@ -518,7 +518,7 @@ public class Admin extends JFrame {
         suabtn = new JButton("Sửa nhân viên");
         pBCN.add(suabtn);
 
-        ImageIcon imageIcon2 = new ImageIcon("./src/src/image/fix.png"); // load the image to a imageIcon
+        ImageIcon imageIcon2 = new ImageIcon("./src/image/edit-icon.png");  // load the image to a imageIcon
         Image image2 = imageIcon2.getImage();
         Image newimg2 = image2.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon2 = new ImageIcon(newimg2);
@@ -528,7 +528,7 @@ public class Admin extends JFrame {
         xoabtn = new JButton("Xóa nhân viên");
         pBCN.add(xoabtn);
 
-        ImageIcon imageIcon3 = new ImageIcon("./src/src/image/Deduction.png"); // load the image to a imageIcon
+        ImageIcon imageIcon3 = new ImageIcon("./src/image/green-cross-icon.png");// load the image to a imageIcon
         Image image3 = imageIcon3.getImage();
         Image newimg3 = image3.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon3 = new ImageIcon(newimg3);
@@ -538,7 +538,7 @@ public class Admin extends JFrame {
         khenbtn = new JButton("Thưởng nhân viên");
         pBCN.add(khenbtn);
 
-        ImageIcon imageIcon4 = new ImageIcon("./src/src/image/Payment.png"); // load the image to a imageIcon
+        ImageIcon imageIcon4 = new ImageIcon("./src/image/medal-award-bronze-icon.png"); // load the image to a imageIcon
         Image image4 = imageIcon4.getImage();
         Image newimg4 = image4.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon4 = new ImageIcon(newimg4);
@@ -550,7 +550,7 @@ public class Admin extends JFrame {
         // phatbtn.setBounds(450, 150, 100, 30);
         pBCN.add(phatbtn);
 
-        ImageIcon imageIcon5 = new ImageIcon("./src/src/image/punish.png"); // load the image to a imageIcon
+        ImageIcon imageIcon5 = new ImageIcon("./src/image/punish-icon.jpg");  // load the image to a imageIcon
         Image image5 = imageIcon5.getImage();
         Image newimg5 = image5.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon5 = new ImageIcon(newimg5);
@@ -562,7 +562,7 @@ public class Admin extends JFrame {
         // logoutbtn.setBounds(450, 250, 100, 30);
         pBCN.add(logoutbtn);
 
-        ImageIcon imageIcon6 = new ImageIcon("./src/src/image/logout.png"); // load the image to a imageIcon
+        ImageIcon imageIcon6 = new ImageIcon("./src/image/Logout-icon.png"); // load the image to a imageIcon
         Image image6 = imageIcon6.getImage();
         Image newimg6 = image6.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         imageIcon6 = new ImageIcon(newimg6);
