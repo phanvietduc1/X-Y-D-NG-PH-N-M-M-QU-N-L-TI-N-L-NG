@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 05, 2020 lúc 04:33 PM
+-- Thời gian đã tạo: Th7 06, 2020 lúc 05:33 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.2.30
 
@@ -56,13 +56,13 @@ CREATE TABLE `chucvu` (
 --
 
 INSERT INTO `chucvu` (`tenchucvu`, `tienchucvu`) VALUES
-('GIAMDOC', 500000),
+('GIAMDOC', 480000),
 ('KETOAN', 200000),
 ('NHANVIEN', 100000),
 ('PHOGIAMDOC', 440000),
 ('PHOPHONG', 300000),
 ('THUKY', 280000),
-('TRUONGPHONG', 400000);
+('TRUONGPHONG', 350000);
 
 -- --------------------------------------------------------
 
@@ -91,20 +91,17 @@ INSERT INTO `luong` (`MALUONG`, `MANV`, `SONGAYLAM`, `HESO`, `PHUCAP`, `TONGLUON
 ('L04', 'NV04', 26, 3.66, 0, 7320000, ''),
 ('L05', 'NV05', 26, 3, 0, 5700000, ''),
 ('L06', 'NV06', 26, 3.66, 0, 9516000, ''),
-('L07', 'NV07', 26, 2.67, 0, 5700000, ''),
-('L08', 'NV08', 26, 4.32, 0, 11232000, ''),
-('L09', 'NV09', 26, 2.67, 0, 5700000, ''),
-('L10', 'NV10', 26, 2.67, 0, 8418000, ''),
-('L11', 'NV11', 26, 3.66, 0, 7320000, ''),
-('L12', 'NV12', 26, 2.67, 0, 5700000, ''),
-('L13', 'NV13', 26, 5.53, 0, 15270000, ''),
-('L14', 'NV14', 26, 4.32, 0, 13270000, ''),
-('L15', 'NV15', 26, 3.66, 0, 5700000, ''),
-('L16', 'NV16', 26, 4.32, 0, 10500000, ''),
-('L17', 'NV17', 26, 4.32, 0, 8640000, ''),
-('L18', 'NV18', 26, 3.66, 0, 7320000, ''),
-('L19', 'NV19', 26, 2.67, 0, 5700000, ''),
-('L20', 'NV20', 26, 3.66, 0, 6588000, '');
+('L07', 'NV07', 23, 3, 0, 12420000, ''),
+('L08', 'NV08', 25, 4.32, 0, 32400000, ''),
+('L09', 'NV09', 20, 2.67, 0, 10680000, ''),
+('L10', 'NV10', 26, 5.53, 0, 43134000, NULL),
+('L11', 'NV11', 21, 2.67, 100000, 12435400, 'Thứ 5: tăng ca '),
+('L12', 'NV12', 17, 2.67, -20000, 9965800, 'Thứ 6: Làm việc riêng'),
+('L13', 'NV13', 22, 3.33, 0, 14652000, ''),
+('L14', 'NV14', 24, 2.67, 0, 11534400, ''),
+('L15', 'NV15', 25, 2.67, -50000, 13300000, 'Thứ 3: Đi trễ'),
+('L16', 'NV16', 19, 2.67, 0, 11160600, ''),
+('L17', 'NV17', 22, 2.67, 34000, 11782000, ' Thứ 4: Năng suất');
 
 -- --------------------------------------------------------
 
@@ -132,20 +129,17 @@ INSERT INTO `nhanvien` (`MANV`, `TENNV`, `GIOITINH`, `NGAYVAOLAM`, `tenchucvu`, 
 ('NV04', 'HO THI THINH', 'NU', '2018-04-12', 'KETOAN', 'P02'),
 ('NV05', 'PHAN VAN VIET', 'NAM', '2019-04-12', 'NHANVIEN', 'P01'),
 ('NV06', 'NGUYEN THI TRINH', 'NU', '2020-04-12', 'TRUONGPHONG', 'P03'),
-('NV07', 'NGO THAI HUNG', 'NAM', '2020-01-21', 'NHANVIEN', 'P05'),
-('NV08', 'VU ANH HAO', 'NAM', '2018-02-16', 'TRUONGPHONG', 'P01'),
-('NV09', 'NGUYEN THI THU TRANG', 'NU', '2020-02-09', 'NHANVIEN', 'P03'),
-('NV10', 'PHAN ANH', 'NU', '2020-03-13', 'PHOPHONG', 'P02'),
-('NV11', 'LE VAN VIET', 'NAM', '2019-06-12', 'KETOAN', 'P02'),
-('NV12', 'TRAN NGOC HAN', 'NU', '2020-04-12', 'NHANVIEN', 'P03'),
-('NV13', 'TRAN VAN BA', 'NAM', '2017-04-01', 'GIAMDOC', 'P04'),
-('NV14', 'NGUYEN THU TRANG', 'NU', '2018-07-30', 'PHOGIAMDOC', 'P04'),
-('NV15', 'HOANG THI HOA', 'NU', '2019-03-12', 'NHANVIEN', 'P05'),
-('NV16', 'PHAN THI THUY', 'NU', '2018-06-07', 'THUKY', 'P03'),
-('NV17', 'HO PHUONG LY', 'NU', '2018-07-21', 'NHANVIEN', 'P03'),
-('NV18', 'CHAU NGOC MINH THU', 'NU', '2019-07-20', 'NHANVIEN', 'P03'),
-('NV19', 'PHAN NGOC PHUONG NHI', 'NU', '2020-09-20', 'NHANVIEN', 'P03'),
-('NV20', 'LE CONG MI', 'NAM', '2019-07-08', 'TRUONGPHONG', 'P03');
+('NV07', 'NGUYEN VAN DUC', 'NAM', '2019-03-09', 'KETOAN', 'P03'),
+('NV08', 'HOANG THU HUONG', 'NU', '2018-04-27', 'PHOGIAMDOC', 'P04'),
+('NV09', 'NGUYEN THI TRANG', 'NU', '2020-06-19', 'NHANVIEN', 'P01'),
+('NV10', 'PHAN THI LINH', 'NU', '2018-01-01', 'GIAMDOC', 'P04'),
+('NV11', 'NGUYEN VAN MANH', 'NAM', '2019-04-06', 'NHANVIEN', 'P05'),
+('NV12', 'PHAN ANH', 'NAM', '2020-05-16', 'NHANVIEN', 'P05'),
+('NV13', 'HO PHUONG LY', 'NAM', '2018-12-12', 'PHOPHONG', 'P01'),
+('NV14', 'CHAU NGOC MINH THU', 'NAM', '2020-09-13', 'NHANVIEN', 'P03'),
+('NV15', 'GIA HA GIA HUY', 'NU', '2018-04-13', 'NHANVIEN', 'P01'),
+('NV16', 'LE VO DINH KHA', 'NU', '2020-02-19', 'NHANVIEN', 'P05'),
+('NV17', 'BUI CANH LONG', 'NU', '2020-09-21', 'NHANVIEN', 'P01');
 
 -- --------------------------------------------------------
 
@@ -164,11 +158,11 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`MAPHONG`, `TEN`, `TIENPHONG`) VALUES
-('P01', 'NHAN SU', 2200000),
-('P02', 'KIEM TOAN', 2000000),
-('P03', 'KIEM KE', 1800000),
-('P04', 'DIEU HANH', 3000000),
-('P05', 'MARKETING', 2500000);
+('P01', 'NHAN SU', 200000),
+('P02', 'KIEM TOAN', 150000),
+('P03', 'KIEM KE', 180000),
+('P04', 'DIEU HANH', 300000),
+('P05', 'MARKETING', 220000);
 
 --
 -- Chỉ mục cho các bảng đã đổ

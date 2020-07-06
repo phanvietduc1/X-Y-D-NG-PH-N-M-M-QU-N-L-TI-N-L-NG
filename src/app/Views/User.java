@@ -328,7 +328,7 @@ public class User extends JFrame {
         try {
             conn = getConnection();
 
-            String sql = "SELECT * FROM nhanvien Where MANV = 'NV01'";
+            String sql = "SELECT * FROM nhanvien Where MANV = 'NV03'";
 
             Statement st = conn.createStatement();
 
@@ -377,7 +377,7 @@ public class User extends JFrame {
     private void addConnection1() {
         try {
             conn = getConnection();
-            String sql = "SELECT * FROM luong Where MALUONG = 'L01'";
+            String sql = "SELECT * FROM luong Where MALUONG = 'L08'";
             Statement st = conn.createStatement();
 
             rs = st.executeQuery(sql);

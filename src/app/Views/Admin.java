@@ -44,7 +44,7 @@ import app.Controllers.*;
 
 public class Admin extends JFrame {
      static final long serialVersionUID = 1L;
-    JButton khenbtn, phatbtn, logoutbtn, thembtn, suabtn, xoabtn;
+    JButton khenbtn, phatbtn, logoutbtn, thembtn, suabtn, xoabtn, testBtn;
     JPanel mainpnl;
     JTable tb1, tb2, tb3, tb4;
     DefaultTableModel dtm1, dtm2, dtm3, dtm4;
@@ -557,7 +557,7 @@ public class Admin extends JFrame {
         phatbtn.setIcon(imageIcon5);
 
         pBCN.add(Box.createVerticalStrut(0));
-        // Tạo nút Logout
+        // 
         logoutbtn = new JButton("Đăng xuất");
         // logoutbtn.setBounds(450, 250, 100, 30);
         pBCN.add(logoutbtn);
@@ -568,10 +568,7 @@ public class Admin extends JFrame {
         imageIcon6 = new ImageIcon(newimg6);
         logoutbtn.setIcon(imageIcon6);
 
-        pBCN.add(Box.createHorizontalStrut(15));
-
         add(p2, BorderLayout.CENTER);
-
     }
 
     public void createThem() {
