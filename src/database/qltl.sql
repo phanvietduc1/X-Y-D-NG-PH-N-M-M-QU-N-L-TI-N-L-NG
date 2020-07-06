@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 28, 2020 at 07:51 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th7 05, 2020 lúc 04:33 PM
+-- Phiên bản máy phục vụ: 10.4.11-MariaDB
+-- Phiên bản PHP: 7.2.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `qltl`
+-- Cơ sở dữ liệu: `qltl`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
@@ -33,7 +33,7 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
 INSERT INTO `account` (`username`, `password`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `account` (`username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chucvu`
+-- Cấu trúc bảng cho bảng `chucvu`
 --
 
 CREATE TABLE `chucvu` (
@@ -52,19 +52,22 @@ CREATE TABLE `chucvu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `chucvu`
+-- Đang đổ dữ liệu cho bảng `chucvu`
 --
 
 INSERT INTO `chucvu` (`tenchucvu`, `tienchucvu`) VALUES
+('GIAMDOC', 500000),
 ('KETOAN', 200000),
 ('NHANVIEN', 100000),
+('PHOGIAMDOC', 440000),
 ('PHOPHONG', 300000),
-('TRUONGPHO', 400000);
+('THUKY', 280000),
+('TRUONGPHONG', 400000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `luong`
+-- Cấu trúc bảng cho bảng `luong`
 --
 
 CREATE TABLE `luong` (
@@ -78,7 +81,7 @@ CREATE TABLE `luong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `luong`
+-- Đang đổ dữ liệu cho bảng `luong`
 --
 
 INSERT INTO `luong` (`MALUONG`, `MANV`, `SONGAYLAM`, `HESO`, `PHUCAP`, `TONGLUONG`, `GHICHU`) VALUES
@@ -87,12 +90,26 @@ INSERT INTO `luong` (`MALUONG`, `MANV`, `SONGAYLAM`, `HESO`, `PHUCAP`, `TONGLUON
 ('L03', 'NV03', 26, 2.67, 0, 5073000, ''),
 ('L04', 'NV04', 26, 3.66, 0, 7320000, ''),
 ('L05', 'NV05', 26, 3, 0, 5700000, ''),
-('L06', 'NV06', 26, 3.66, 0, 9516000, '');
+('L06', 'NV06', 26, 3.66, 0, 9516000, ''),
+('L07', 'NV07', 26, 2.67, 0, 5700000, ''),
+('L08', 'NV08', 26, 4.32, 0, 11232000, ''),
+('L09', 'NV09', 26, 2.67, 0, 5700000, ''),
+('L10', 'NV10', 26, 2.67, 0, 8418000, ''),
+('L11', 'NV11', 26, 3.66, 0, 7320000, ''),
+('L12', 'NV12', 26, 2.67, 0, 5700000, ''),
+('L13', 'NV13', 26, 5.53, 0, 15270000, ''),
+('L14', 'NV14', 26, 4.32, 0, 13270000, ''),
+('L15', 'NV15', 26, 3.66, 0, 5700000, ''),
+('L16', 'NV16', 26, 4.32, 0, 10500000, ''),
+('L17', 'NV17', 26, 4.32, 0, 8640000, ''),
+('L18', 'NV18', 26, 3.66, 0, 7320000, ''),
+('L19', 'NV19', 26, 2.67, 0, 5700000, ''),
+('L20', 'NV20', 26, 3.66, 0, 6588000, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nhanvien`
+-- Cấu trúc bảng cho bảng `nhanvien`
 --
 
 CREATE TABLE `nhanvien` (
@@ -105,7 +122,7 @@ CREATE TABLE `nhanvien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `nhanvien`
+-- Đang đổ dữ liệu cho bảng `nhanvien`
 --
 
 INSERT INTO `nhanvien` (`MANV`, `TENNV`, `GIOITINH`, `NGAYVAOLAM`, `tenchucvu`, `MAPHONG`) VALUES
@@ -114,12 +131,26 @@ INSERT INTO `nhanvien` (`MANV`, `TENNV`, `GIOITINH`, `NGAYVAOLAM`, `tenchucvu`, 
 ('NV03', 'PHAM VAN BACH', 'NAM', '2020-02-01', 'NHANVIEN', 'P03'),
 ('NV04', 'HO THI THINH', 'NU', '2018-04-12', 'KETOAN', 'P02'),
 ('NV05', 'PHAN VAN VIET', 'NAM', '2019-04-12', 'NHANVIEN', 'P01'),
-('NV06', 'NGUYEN THI TRINH', 'NU', '2020-04-12', 'TRUONGPHONG', 'P03');
+('NV06', 'NGUYEN THI TRINH', 'NU', '2020-04-12', 'TRUONGPHONG', 'P03'),
+('NV07', 'NGO THAI HUNG', 'NAM', '2020-01-21', 'NHANVIEN', 'P05'),
+('NV08', 'VU ANH HAO', 'NAM', '2018-02-16', 'TRUONGPHONG', 'P01'),
+('NV09', 'NGUYEN THI THU TRANG', 'NU', '2020-02-09', 'NHANVIEN', 'P03'),
+('NV10', 'PHAN ANH', 'NU', '2020-03-13', 'PHOPHONG', 'P02'),
+('NV11', 'LE VAN VIET', 'NAM', '2019-06-12', 'KETOAN', 'P02'),
+('NV12', 'TRAN NGOC HAN', 'NU', '2020-04-12', 'NHANVIEN', 'P03'),
+('NV13', 'TRAN VAN BA', 'NAM', '2017-04-01', 'GIAMDOC', 'P04'),
+('NV14', 'NGUYEN THU TRANG', 'NU', '2018-07-30', 'PHOGIAMDOC', 'P04'),
+('NV15', 'HOANG THI HOA', 'NU', '2019-03-12', 'NHANVIEN', 'P05'),
+('NV16', 'PHAN THI THUY', 'NU', '2018-06-07', 'THUKY', 'P03'),
+('NV17', 'HO PHUONG LY', 'NU', '2018-07-21', 'NHANVIEN', 'P03'),
+('NV18', 'CHAU NGOC MINH THU', 'NU', '2019-07-20', 'NHANVIEN', 'P03'),
+('NV19', 'PHAN NGOC PHUONG NHI', 'NU', '2020-09-20', 'NHANVIEN', 'P03'),
+('NV20', 'LE CONG MI', 'NAM', '2019-07-08', 'TRUONGPHONG', 'P03');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phong`
+-- Cấu trúc bảng cho bảng `phong`
 --
 
 CREATE TABLE `phong` (
@@ -129,33 +160,35 @@ CREATE TABLE `phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `phong`
+-- Đang đổ dữ liệu cho bảng `phong`
 --
 
 INSERT INTO `phong` (`MAPHONG`, `TEN`, `TIENPHONG`) VALUES
 ('P01', 'NHAN SU', 2200000),
 ('P02', 'KIEM TOAN', 2000000),
-('P03', 'KIEM KE', 1800000);
+('P03', 'KIEM KE', 1800000),
+('P04', 'DIEU HANH', 3000000),
+('P05', 'MARKETING', 2500000);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `chucvu`
+-- Chỉ mục cho bảng `chucvu`
 --
 ALTER TABLE `chucvu`
   ADD PRIMARY KEY (`tenchucvu`);
 
 --
--- Indexes for table `luong`
+-- Chỉ mục cho bảng `luong`
 --
 ALTER TABLE `luong`
   ADD PRIMARY KEY (`MALUONG`),
   ADD KEY `FK_MANV` (`MANV`);
 
 --
--- Indexes for table `nhanvien`
+-- Chỉ mục cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`MANV`),
@@ -163,23 +196,23 @@ ALTER TABLE `nhanvien`
   ADD KEY `FK_nhanvien2` (`tenchucvu`);
 
 --
--- Indexes for table `phong`
+-- Chỉ mục cho bảng `phong`
 --
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`MAPHONG`);
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `luong`
+-- Các ràng buộc cho bảng `luong`
 --
 ALTER TABLE `luong`
   ADD CONSTRAINT `FK_MANV` FOREIGN KEY (`MANV`) REFERENCES `nhanvien` (`MANV`);
 
 --
--- Constraints for table `nhanvien`
+-- Các ràng buộc cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
   ADD CONSTRAINT `FK_nhanvien` FOREIGN KEY (`MAPHONG`) REFERENCES `phong` (`MAPHONG`),
