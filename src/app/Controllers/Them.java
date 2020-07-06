@@ -243,10 +243,13 @@ public class Them extends javax.swing.JFrame {
                     break;
                 case "NHANVIEN":
                     lg.setheso(2.67);
+                    break;
                 case "GIAMDOC":
                     lg.setheso(5.53);
+                    break;
                 case "PHOGIAMDOC":
-                    lg.setheso(4.32);    
+                    lg.setheso(4.32);  
+                    break;
                 case "THUKY":
                     lg.setheso(3.66);
                     break;
@@ -259,7 +262,7 @@ public class Them extends javax.swing.JFrame {
             ChucVuService cvs = new ChucVuService(); // Service xử lý đối tượng Chức vụ
             long tienchucvu = cvs.getTienChucVu(nv.getChucVu());  // lấy tiền chức vụ của nhân viên
             
-            long tongluong = (long) ((tienphong + tienchucvu) * lg.getheso() + lg.getphucap()); // dựa trên các tiền lấy ở trên để tính tổng lương
+            long tongluong = (long) ((tienphong + tienchucvu) * lg.getheso() * lg.getsongaylam() + lg.getphucap()); // dựa trên các tiền lấy ở trên để tính tổng lương
             lg.settongluong(tongluong); // sau đó gán cho đối lượng lương
             
             if (ls.createLuong(lg)) { // thêm đối tượng lg vào database bằng lương service (ls). Nếu thêm thành công thì giá trị trả về là true.

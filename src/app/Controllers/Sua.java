@@ -253,10 +253,13 @@ public class Sua extends javax.swing.JFrame {
                     break;
                 case "NHANVIEN":
                     lg.setheso(2.67);
+                    break;
                 case "GIAMDOC":
                     lg.setheso(5.53);
+                    break;
                 case "PHOGIAMDOC":
-                    lg.setheso(4.32);    
+                    lg.setheso(4.32);
+                    break;
                 case "THUKY":
                     lg.setheso(3.66);
                     break;
